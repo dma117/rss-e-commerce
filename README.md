@@ -66,3 +66,9 @@ npm run preview
 ```
 npm run prepare
 ```
+
+8. Formating code 
+
+```
+npm run prettier
+```
