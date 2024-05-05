@@ -20,3 +20,49 @@ ESLint - Static code analysis tool for identifying problem areas in JavaScript c
 husky - A package that allows you to use Git hooks as npm scripts.
 prettier - A tool for code formatting.
 vitest - A tool for testing JavaScript and TypeScript code.
+
+### Getting Started
+
+1. Install dependencies
+
+```
+npm  install
+```
+
+2. Run dev server
+
+```
+npm run dev
+```
+
+#### Another scripts
+
+3. Build for production
+
+```
+npm run build
+```
+
+4. Linting code
+
+```
+npm run eslint
+```
+
+5. Run tests
+
+```
+npm run test
+```
+
+6. Preview of finished project
+
+```
+npm run preview
+```
+
+7. Install husky
+
+```
+npm run prepare
+```
