@@ -14,12 +14,12 @@ The app is powered by CommerceTools, a leading provider of commerce solutions fo
 
 ### Stack
 React is a JavaScript library for creating user interfaces.
-TypeScript - An open source programming language that extends JavaScript by adding static typing.
-Vite - A rapid development tool that utilizes a modular project structure and fast recompilation to ensure high performance during development.
-ESLint - Static code analysis tool for identifying problem areas in JavaScript code.
-husky - A package that allows you to use Git hooks as npm scripts.
-prettier - A tool for code formatting.
-vitest - A tool for testing JavaScript and TypeScript code.
+TypeScript is an open source programming language that extends JavaScript by adding static typing.
+Vite is a rapid development tool that utilizes a modular project structure and fast recompilation to ensure high performance during development.
+ESLint is a static code analysis tool for identifying problem areas in JavaScript code.
+Husky is a package that allows you to use Git hooks as npm scripts.
+Prettier is a tool for code formatting.
+Vitest is a tool for testing JavaScript and TypeScript code.
 
 ### Getting Started
 
