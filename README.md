@@ -61,7 +61,7 @@ npm run test
 npm run preview
 ```
 
-7. Install husky
+7. Run husky
 
 ```
 npm run prepare
