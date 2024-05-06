@@ -26,7 +26,7 @@ vitest - A tool for testing JavaScript and TypeScript code.
 1. Install dependencies
 
 ```
-npm  install
+npm install
 ```
 
 2. Run dev server
