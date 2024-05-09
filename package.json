@@ -10,7 +10,8 @@
     "prepare": "husky",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write ./src",
+    "format": "prettier ./src",
+    "format:fix": "prettier --write ./src",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
