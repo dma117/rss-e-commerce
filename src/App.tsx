@@ -1,3 +1,5 @@
+import './styles/normalize.css';
+
 function App() {
   return <></>;
 }
