@@ -1,0 +1,12 @@
+.logo {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
