@@ -5,3 +5,12 @@
   --font-size-base: 16px;
   --line-height-base: 1.5;
 } */
+:root {
+  --dark-bg: #00093C;
+  --light-bg: ;
+  --dark-text: ;
+  --light-text: #ffffff;
+
+  --desctop-content-width: 1146px;
+  --mobile-size: 576px;
+}

@@ -1,2 +1,20 @@
 /* Reset Styles */
 /* Include a CSS reset or normalize.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--desctop-content-width);
+}
