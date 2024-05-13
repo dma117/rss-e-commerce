@@ -16,5 +16,5 @@ a {
 
 .container {
   margin: 0 auto;
-  max-width: var(--desctop-content-width);
+  max-width: var(--desktop-content-width);
 }
