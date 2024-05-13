@@ -7,8 +7,8 @@
 } */
 :root {
   --dark-bg: #00093C;
-  --light-bg: ;
-  --dark-text: ;
+  --light-bg: #ffffff;
+  --dark-text: #000000;
   --light-text: #ffffff;
 
   --desctop-content-width: 1146px;
