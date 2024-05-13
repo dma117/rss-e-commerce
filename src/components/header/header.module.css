@@ -14,14 +14,18 @@
   margin-left: auto;
 }
 
-.header__nav-list {
+.header__navList {
   display: flex;
   gap: 2rem;
   list-style: none;
 }
 
-.header__nav-item {
+.header__navItem {
   color: var(--light-text);
+}
+
+.header__navItem a {
+  padding: 0.5rem;
 }
 
 .logout-button {
@@ -32,7 +36,7 @@
   cursor: pointer;
 }
 
-.header__menu-button {
+.header__menuButton {
   display: none;
 }
 
@@ -54,16 +58,17 @@
     transform: translateX(100%);
   }
 
-  .header__nav-list {
+  .header__navList {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-left: 4rem;
+    align-items: center;
+    padding: 0 4rem;
     padding-top: 3rem;
-
+    font-size: 1.5rem;
   }
 
-  .header__menu-button {
+  .header__menuButton {
     display: flex;
     align-items: center;
     margin-left: auto;
@@ -76,7 +81,7 @@
     cursor: pointer;
   }
 
-  .header__menu-button div {
+  .header__menuButton div {
     justify-self: end;
     position: relative;
     width: 100%;
@@ -85,8 +90,8 @@
     transition: all 0.5s;
   }
 
-  .header__menu-button div:after,
-  .header__menu-button div:before {
+  .header__menuButton div:after,
+  .header__menuButton div:before {
     position: absolute;
     content: '';
     width: 100%;
@@ -95,27 +100,27 @@
     transition: all 0.5s;
   }
 
-  .header__menu-button div:before {
+  .header__menuButton div:before {
     top: -10px;
     left: 0;
   }
 
-  .header__menu-button div:after {
+  .header__menuButton div:after {
     bottom: -10px;
     left: 0;
   }
 
-  .header__menu-button.open div {
+  .header__menuButton.open div {
     background-color: transparent;
   }
 
-  .header__menu-button.open div:before {
+  .header__menuButton.open div:before {
     transform: rotate(135deg);
     top: 0;
     left: 0;
   }
 
-  .header__menu-button.open div:after {
+  .header__menuButton.open div:after {
     transform: rotate(-135deg);
     bottom: 0;
     left: 0;

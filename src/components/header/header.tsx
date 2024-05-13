@@ -18,25 +18,25 @@ function Header({isAuth}: HeaderProps) {
           color='#fff'
         />
         <nav className={cn(styles['header__nav'], { [styles.active]: isOpen })}>
-          <ul className={styles['header__nav-list']}>
-            <li className={styles['header__nav-item']}>
+          <ul className={styles['header__navList']}>
+            <li className={styles['header__navItem']}>
               <a href="#main">Main</a>
             </li>
-            <li className={styles['header__nav-item']}>
+            <li className={styles['header__navItem']}>
               <a href="#about">About</a>
             </li>
             {isAuth ? 
-            <li className={cn(styles['header__nav-item'])}>
+            <li className={styles['header__navItem']}>
               <button className={styles['logout-button']}>Logout</button>
             </li>            
           :
-            <li className={styles['header__nav-item']}>
+            <li className={styles['header__navItem']}>
               <a href="#login">Login</a>
             </li>}
           </ul>
         </nav>
         <button
-          className={cn(styles['header__menu-button'], { [styles.open]: isOpen })}
+          className={cn(styles['header__menuButton'], { [styles.open]: isOpen })}
           onClick={() => setOpen(!isOpen)}
         >
           <div></div>
