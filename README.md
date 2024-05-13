@@ -75,5 +75,5 @@ npm run format
 - Formating code 
 
 ```
-npm run format:fix
+npm run format:refactor
 ```
