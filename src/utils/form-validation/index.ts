@@ -3,7 +3,7 @@ import { POSTAL_CODES_REG_EXP } from './postal-codes';
 
 type RegExpKeys =
   | 'CAPITAL_LETTERS'
-  | 'LOWERCASE_LETTERS'
+  | 'SMALL_LETTERS'
   | 'NUMBERS'
   | 'SPECIAL_CHARACTERS'
   | 'ANY_LETTER'
@@ -14,7 +14,7 @@ type RegExpKeys =
 
 const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   CAPITAL_LETTERS: /[A-Z]/g,
-  LOWERCASE_LETTERS: /[a-z]/g,
+  SMALL_LETTERS: /[a-z]/g,
   NUMBERS: /\d/g,
   SPECIAL_CHARACTERS: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g,
   ANY_LETTER: /[a-zA-Z]/g,
@@ -24,79 +24,50 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   EMAIL_DOMAIN_PART: /@[^\s@]+\.[^\s@]+$/g,
 };
 
-type RegExpTestFunction = (str: string) => RegExpMatchArray | null;
+type MinMatchTestFunction = (strToCheck: string, minThreshold: number) => boolean;
 
-const matchCapitalLetters: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.CAPITAL_LETTERS);
-
-const matchLowerCaseLetters: RegExpTestFunction = (str) =>
-  str.match(REG_EXP_LIST.LOWERCASE_LETTERS);
-
-const matchNumbers: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.NUMBERS);
-
-const matchAnyLetter: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.ANY_LETTER);
-
-const matchSpecialCharacters: RegExpTestFunction = (str) =>
-  str.match(REG_EXP_LIST.SPECIAL_CHARACTERS);
-
-const matchTrailingSpaces: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.SPACES);
-
-const matchEmailLocalPart: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.EMAIL_LOCAL_PART);
-
-const matchEmailSeparator: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.EMAIL_SEPARATOR);
-
-const matchEmailDomainPart: RegExpTestFunction = (str) => str.match(REG_EXP_LIST.EMAIL_DOMAIN_PART);
-
-type MinThresholdTestFunction = (strToCheck: string, minThreshold: number) => boolean;
-
-export const checkCapitalLetters: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchCapitalLetters(value);
-  return isObject(matches) && matches.length >= minCount;
+const createMinMatchTestFunction = (regex: RegExp): MinMatchTestFunction => {
+  return (value, minCount) => {
+    const matches = value.match(regex);
+    return isObject(matches) && matches.length >= minCount;
+  };
 };
 
-export const hasLowerCaseLetters: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchLowerCaseLetters(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasCapitalLetters: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.CAPITAL_LETTERS,
+);
 
-export const hasNumbers: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchNumbers(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasSmallLetters: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.SMALL_LETTERS,
+);
 
-export const hasAnyLetter: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchAnyLetter(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasNumbers: MinMatchTestFunction = createMinMatchTestFunction(REG_EXP_LIST.NUMBERS);
 
-export const hasSpecialCharacters: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchSpecialCharacters(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasAnyLetter: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.ANY_LETTER,
+);
 
-export const hasTrailingSpaces: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchTrailingSpaces(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasSpecialCharacters: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.SPECIAL_CHARACTERS,
+);
 
-export const hasEmailLocalPart: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchEmailLocalPart(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasSpaces: MinMatchTestFunction = createMinMatchTestFunction(REG_EXP_LIST.SPACES);
 
-export const hasEmailSeparator: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchEmailSeparator(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasLocalPart: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.EMAIL_LOCAL_PART,
+);
 
-export const hasEmailDomainPart: MinThresholdTestFunction = (value, minCount) => {
-  const matches = matchEmailDomainPart(value);
-  return isObject(matches) && matches.length >= minCount;
-};
+export const hasSeparator: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.EMAIL_SEPARATOR,
+);
 
-export const isStringLongEnough: MinThresholdTestFunction = (str, minLength) =>
-  str.length >= minLength;
+export const hasDomainPart: MinMatchTestFunction = createMinMatchTestFunction(
+  REG_EXP_LIST.EMAIL_DOMAIN_PART,
+);
 
-export const isAgeAboveMinimum: MinThresholdTestFunction = (dateStr, minAge) => {
+export const isStringLongEnough: MinMatchTestFunction = (str, minLength) => str.length >= minLength;
+
+export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
   const [dayOfBirth, monthOfBirth, yearOfBirth] = dateStr.split('-').map(Number);
   const dateOfBirth = new Date(yearOfBirth, monthOfBirth - 1, dayOfBirth);
 
@@ -121,4 +92,4 @@ export const isEmail = (email: string): boolean => {
 export const isPostalCode = (postalCode: string, countryCode: string): boolean => {
   const regex = POSTAL_CODES_REG_EXP[countryCode];
   return regex.test(postalCode);
-}
+};
