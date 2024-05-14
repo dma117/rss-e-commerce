@@ -10,7 +10,8 @@ type RegExpKeys =
   | 'EMAIL_LOCAL_PART'
   | 'EMAIL_SEPARATOR'
   | 'EMAIL_DOMAIN_PART'
-  | 'DATE';
+  | 'DATE'
+  | 'EMAIL';
 
 const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   CAPITAL_LETTERS: /[A-Z]/g,
@@ -23,6 +24,8 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   EMAIL_SEPARATOR: /\S+@\S+/g,
   EMAIL_DOMAIN_PART: /@[^\s@]+\.[^\s@]+$/g,
   DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
+  EMAIL:
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
 };
 
 type MatchTestFunction = (strToCheck: string) => boolean;
@@ -63,6 +66,8 @@ export const hasEmailDomainPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_DOMAIN_PART,
 );
 
+export const isEmail: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.EMAIL);
+
 type MinMatchTestFunction = (strToCheck: string, minMatchesCount: number) => boolean;
 
 export const isStringLongEnough: MinMatchTestFunction = (str, minLength) => str.length >= minLength;
@@ -87,13 +92,6 @@ export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
   }
 
   return age >= minAge;
-};
-
-export const isEmail: MatchTestFunction = (email) => {
-  // source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#basic_validation
-  const regex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  return regex.test(email);
 };
 
 export const isPostalCode = (postalCode: string, countryCode: string): boolean => {
