@@ -98,6 +98,11 @@ export const isEmail = (email: string): boolean => {
 };
 
 export const isPostalCode = (postalCode: string, countryCode: string): boolean => {
+  if (!(countryCode in POSTAL_CODES_REG_EXP)) {
+    console.error('Got unknown country code: ', countryCode);
+    return false;
+  }
+
   const regex = POSTAL_CODES_REG_EXP[countryCode];
   return regex.test(postalCode);
 };
