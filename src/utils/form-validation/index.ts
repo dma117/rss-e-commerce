@@ -1,4 +1,5 @@
 import { isObject } from '@/utils/type-guards';
+import { POSTAL_CODES_REG_EXP } from './postal-codes';
 
 type RegExpKeys =
   | 'CAPITAL_LETTERS'
@@ -116,3 +117,8 @@ export const isEmail = (email: string): boolean => {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   return regex.test(email);
 };
+
+export const isPostalCode = (postalCode: string, countryCode: string): boolean => {
+  const regex = POSTAL_CODES_REG_EXP[countryCode];
+  return regex.test(postalCode);
+}
