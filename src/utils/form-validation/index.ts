@@ -1,4 +1,3 @@
-import { isObject } from '@utils/type-guards';
 import { POSTAL_CODES_REG_EXP } from './postal-codes';
 
 type RegExpKeys =
@@ -26,46 +25,45 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
 };
 
-type MinMatchTestFunction = (strToCheck: string, minMatchesCount: number) => boolean;
+type MatchTestFunction = (strToCheck: string) => boolean;
 
-const createMinMatchTestFunction = (regex: RegExp): MinMatchTestFunction => {
-  return (value, minCount) => {
-    const matches = value.match(regex);
-    return isObject(matches) && matches.length >= minCount;
+const createMatchTestFunction = (regex: RegExp): MatchTestFunction => {
+  return (value) => {
+    return regex.test(value);
   };
 };
 
-export const hasCapitalLetters: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasCapitalLetters: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.CAPITAL_LETTERS,
 );
 
-export const hasSmallLetters: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasSmallLetters: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.SMALL_LETTERS,
 );
 
-export const hasNumbers: MinMatchTestFunction = createMinMatchTestFunction(REG_EXP_LIST.NUMBERS);
+export const hasNumbers: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.NUMBERS);
 
-export const hasAnyLetter: MinMatchTestFunction = createMinMatchTestFunction(
-  REG_EXP_LIST.ANY_LETTER,
-);
+export const hasAnyLetter: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.ANY_LETTER);
 
-export const hasSpecialCharacters: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasSpecialCharacters: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.SPECIAL_CHARACTERS,
 );
 
-export const hasSpaces: MinMatchTestFunction = createMinMatchTestFunction(REG_EXP_LIST.SPACES);
+export const hasSpaces: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.SPACES);
 
-export const hasLocalPart: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasLocalPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_LOCAL_PART,
 );
 
-export const hasSeparator: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasSeparator: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_SEPARATOR,
 );
 
-export const hasDomainPart: MinMatchTestFunction = createMinMatchTestFunction(
+export const hasDomainPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_DOMAIN_PART,
 );
+
+type MinMatchTestFunction = (strToCheck: string, minMatchesCount: number) => boolean;
 
 export const isStringLongEnough: MinMatchTestFunction = (str, minLength) => str.length >= minLength;
 
@@ -91,7 +89,7 @@ export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
   return age >= minAge;
 };
 
-export const isEmail = (email: string): boolean => {
+export const isEmail: MatchTestFunction = (email) => {
   // source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#basic_validation
   const regex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
