@@ -26,7 +26,7 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
 };
 
-type MinMatchTestFunction = (strToCheck: string, minThreshold: number) => boolean;
+type MinMatchTestFunction = (strToCheck: string, minMatchesCount: number) => boolean;
 
 const createMinMatchTestFunction = (regex: RegExp): MinMatchTestFunction => {
   return (value, minCount) => {
