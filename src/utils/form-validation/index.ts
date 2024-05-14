@@ -51,15 +51,15 @@ export const hasSpecialCharacters: MatchTestFunction = createMatchTestFunction(
 
 export const hasSpaces: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.SPACES);
 
-export const hasLocalPart: MatchTestFunction = createMatchTestFunction(
+export const hasEmailLocalPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_LOCAL_PART,
 );
 
-export const hasSeparator: MatchTestFunction = createMatchTestFunction(
+export const hasEmailSeparator: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_SEPARATOR,
 );
 
-export const hasDomainPart: MatchTestFunction = createMatchTestFunction(
+export const hasEmailDomainPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_DOMAIN_PART,
 );
 
