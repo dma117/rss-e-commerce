@@ -74,6 +74,7 @@ export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
 
   if (!isDate(dateStr)) {
     console.error('Expected dd-mm-yyyy format, got ', dateStr);
+    return false;
   }
 
   const [dayOfBirth, monthOfBirth, yearOfBirth] = dateStr.split('-').map(Number);
