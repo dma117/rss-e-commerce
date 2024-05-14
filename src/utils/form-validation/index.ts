@@ -1,4 +1,4 @@
-import { isObject } from '@/utils/type-guards';
+import { isObject } from '@utils/type-guards';
 import { POSTAL_CODES_REG_EXP } from './postal-codes';
 
 type RegExpKeys =

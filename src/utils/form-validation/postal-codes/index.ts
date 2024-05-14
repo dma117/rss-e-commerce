@@ -1,4 +1,4 @@
-import data from '@/utils/form-validation/postal-codes/data.json';
+import data from '@utils/form-validation/postal-codes/data.json';
 
 interface PostalCode {
   [countryCode: string]: RegExp;

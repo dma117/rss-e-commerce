@@ -23,6 +23,7 @@
     /* Paths to resolve aliases in vite config */
     "paths": {
       "@/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"],
     }
   },
   "include": ["src"],
