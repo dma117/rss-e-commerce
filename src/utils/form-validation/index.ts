@@ -10,7 +10,8 @@ type RegExpKeys =
   | 'SPACES'
   | 'EMAIL_LOCAL_PART'
   | 'EMAIL_SEPARATOR'
-  | 'EMAIL_DOMAIN_PART';
+  | 'EMAIL_DOMAIN_PART'
+  | 'DATE';
 
 const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   CAPITAL_LETTERS: /[A-Z]/g,
@@ -22,6 +23,7 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   EMAIL_LOCAL_PART: /^[^\s@]+@/g,
   EMAIL_SEPARATOR: /\S+@\S+/g,
   EMAIL_DOMAIN_PART: /@[^\s@]+\.[^\s@]+$/g,
+  DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
 };
 
 type MinMatchTestFunction = (strToCheck: string, minThreshold: number) => boolean;
@@ -68,6 +70,12 @@ export const hasDomainPart: MinMatchTestFunction = createMinMatchTestFunction(
 export const isStringLongEnough: MinMatchTestFunction = (str, minLength) => str.length >= minLength;
 
 export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
+  const isDate = (date: string) => REG_EXP_LIST.DATE.test(date);
+
+  if (!isDate(dateStr)) {
+    console.error('Expected dd-mm-yyyy format, got ', dateStr);
+  }
+
   const [dayOfBirth, monthOfBirth, yearOfBirth] = dateStr.split('-').map(Number);
   const dateOfBirth = new Date(yearOfBirth, monthOfBirth - 1, dayOfBirth);
 
