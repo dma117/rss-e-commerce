@@ -9,6 +9,7 @@ function App() {
     <>
       <Header
         isAuth={true}
+        theme='light'
       />
     </>
   );

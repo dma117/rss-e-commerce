@@ -10,3 +10,11 @@
   font-size: 1.3rem;
   font-weight: 500;
 }
+
+.titleLight {
+  color: #ffffff;
+}
+
+.titleDark {
+  color: #000000;
+}

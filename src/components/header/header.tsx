@@ -4,18 +4,18 @@ import Logo from 'components/logo/logo';
 import cn from 'classnames';
 
 type HeaderProps = {
-  isAuth: boolean
+  isAuth: boolean,
+  theme: 'light' | 'dark'
 }
 
-function Header({isAuth}: HeaderProps) {
+function Header({isAuth, theme}: HeaderProps) {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
+    <header className={cn(styles.header, styles[theme])}>
       <div className={`container ${styles.header__container}`}>
         <Logo
-          width={76}
-          color='#fff'
+          theme={theme}
         />
         <nav className={cn(styles['header__nav'], { [styles.active]: isOpen })}>
           <ul className={styles['header__navList']}>

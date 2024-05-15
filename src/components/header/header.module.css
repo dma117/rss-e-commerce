@@ -1,8 +1,16 @@
+.light {
+  color: var(--dark-text);
+  background-color: var(--light-bg);
+}
+
+.dark {
+  color: var(--light-text);
+  background-color: var(--dark-bg);
+}
+
 .header {
   padding: 20px;
   width: 100%;
-  color: var(--light-text);
-  background-color: var(--dark-bg);
 }
 
 .header__container {
@@ -20,20 +28,23 @@
   list-style: none;
 }
 
-.header__navItem {
-  color: var(--light-text);
-}
-
 .header__navItem a {
   padding: 0.5rem;
 }
 
 .logout-button {
   padding: 0;
-  color: var(--light-text);
   background-color: inherit;
   border: none;
   cursor: pointer;
+}
+
+.light .logout-button {
+  color: var(--dark-text);
+}
+
+.dark .logout-button {
+  color: var(--light-text);
 }
 
 .header__menuButton {
