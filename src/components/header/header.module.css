@@ -28,8 +28,38 @@
   list-style: none;
 }
 
+.header__navItem {
+  position: relative;
+}
+
+.header__navItem:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  display: block;
+  width: 0%;
+  height: 2px;
+  transition: all 0.5s;
+}
+
+.dark .header__navItem:after {
+  background-color: var(--light-text);
+}
+
+.light .header__navItem:after {
+  background-color: var(--dark-text);
+}
+
+@media (pointer: fine) {
+  .header__navItem:hover::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
 .header__navItem a {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .logout-button {

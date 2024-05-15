@@ -8,8 +8,9 @@ type HeaderProps = {
   theme: 'light' | 'dark'
 }
 
-function Header({isAuth, theme}: HeaderProps) {
+function Header({ isAuth, theme }: HeaderProps) {
   const [isOpen, setOpen] = useState(false);
+  console.log(isAuth);
 
   return (
     <header className={cn(styles.header, styles[theme])}>
@@ -25,14 +26,19 @@ function Header({isAuth, theme}: HeaderProps) {
             <li className={styles['header__navItem']}>
               <a href="#about">About</a>
             </li>
-            {isAuth ? 
-            <li className={styles['header__navItem']}>
-              <button className={styles['logout-button']}>Logout</button>
-            </li>            
-          :
-            <li className={styles['header__navItem']}>
-              <a href="#login">Login</a>
-            </li>}
+            {isAuth
+              ? <li className={styles['header__navItem']}>
+                <button className={styles['logout-button']}>Logout</button>
+              </li>
+              : <>
+                <li className={styles['header__navItem']}>
+                  <a href="#login">Login</a>
+                </li>
+                <li className={styles['header__navItem']}>
+                  <a href="#signup">Sign up</a>
+                </li>
+              </>
+            }
           </ul>
         </nav>
         <button
