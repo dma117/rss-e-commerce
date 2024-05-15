@@ -14,6 +14,12 @@ a {
   color: inherit;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .container {
   margin: 0 auto;
   max-width: var(--desktop-content-width);
