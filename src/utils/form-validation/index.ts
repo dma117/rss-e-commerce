@@ -22,7 +22,7 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   EMAIL_LOCAL_PART: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@?/,
   EMAIL_SEPARATOR: /@/,
   EMAIL_DOMAIN_PART: /@([a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)(\.[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)+$/,
-  DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
+  DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/,
 };
 
 type MatchTestFunction = (strToCheck: string) => boolean;
@@ -79,7 +79,7 @@ export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
   const dateOfBirth = new Date(yearOfBirth, monthOfBirth - 1, dayOfBirth);
 
   const currentDate = new Date();
-  const [currentMonth, currentDay] = [currentDate.getMonth(), currentDate.getDate()];
+  const [currentMonth, currentDay] = [currentDate.getMonth() + 1, currentDate.getDate()];
 
   let age = currentDate.getFullYear() - dateOfBirth.getFullYear();
   if (currentMonth < monthOfBirth || (currentMonth === monthOfBirth && currentDay < dayOfBirth)) {
