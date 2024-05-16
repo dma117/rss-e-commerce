@@ -10,8 +10,7 @@ type RegExpKeys =
   | 'EMAIL_LOCAL_PART'
   | 'EMAIL_SEPARATOR'
   | 'EMAIL_DOMAIN_PART'
-  | 'DATE'
-  | 'EMAIL';
+  | 'DATE';
 
 const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   CAPITAL_LETTERS: /[A-Z]/g,
@@ -20,12 +19,10 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   SPECIAL_CHARACTERS: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
   ANY_LETTER: /[a-zA-Z]/g,
   SPACES: /[\s\p{Zs}\u180E]+/u,
-  EMAIL_LOCAL_PART: /^[^\s@]+@/g,
-  EMAIL_SEPARATOR: /\S+@\S+/g,
-  EMAIL_DOMAIN_PART: /@[^\s@]+\.[^\s@]+$/g,
+  EMAIL_LOCAL_PART: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@?/,
+  EMAIL_SEPARATOR: /@/,
+  EMAIL_DOMAIN_PART: /@([a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)(\.[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)+$/,
   DATE: /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/g,
-  EMAIL:
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
 };
 
 type MatchTestFunction = (strToCheck: string) => boolean;
@@ -65,8 +62,6 @@ export const hasEmailSeparator: MatchTestFunction = createMatchTestFunction(
 export const hasEmailDomainPart: MatchTestFunction = createMatchTestFunction(
   REG_EXP_LIST.EMAIL_DOMAIN_PART,
 );
-
-export const isEmail: MatchTestFunction = createMatchTestFunction(REG_EXP_LIST.EMAIL);
 
 type MinMatchTestFunction = (strToCheck: string, minMatchesCount: number) => boolean;
 
