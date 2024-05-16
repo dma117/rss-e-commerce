@@ -3,6 +3,24 @@
   margin-right: 4rem;
 }
 
+.logoIcon {
+  display: block;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-image: url(../../../public/logo.svg);
+  mask-image: url(../../../public/logo.svg);
+  width: 76px;
+  height: 71px;
+}
+
+.dark .logoIcon {
+  background-color: var(--light-text);
+}
+
+.light .logoIcon {
+  background-color: var(--dark-text);
+}
+
 .title {
   position: absolute;
   bottom: 10%;
@@ -12,10 +30,11 @@
   font-weight: 500;
 }
 
-.titleLight {
-  color: #ffffff;
+
+.dark .title {
+  color: var(--light-text);
 }
 
-.titleDark {
-  color: #000000;
+.light .title {
+  color: var(--dark-text);
 }

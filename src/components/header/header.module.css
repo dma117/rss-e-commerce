@@ -29,6 +29,7 @@
   margin-left: 2rem;
   align-items: baseline;
 }
+
 .header__userNav {
   align-items: end;
 }
@@ -82,8 +83,63 @@
   gap: 0.5rem;
 }
 
-.siteNav__link img {
+.siteNav__link i {
   align-self: center;
+}
+
+.icon {
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.light .icon {
+  background-color: var(--dark-text);
+}
+
+.dark .icon {
+  background-color: var(--light-text);
+}
+
+.coursesIcon {
+  -webkit-mask-image: url(../../assets/courses.svg);
+  mask-image: url(../../assets/courses.svg);
+  width: 20px;
+  height: 17px;
+}
+
+.basketIcon {
+  -webkit-mask-image: url(../../assets/basket.svg);
+  mask-image: url(../../assets/basket.svg);
+  width: 23px;
+  height: 21px;
+}
+
+.profileIcon {
+  -webkit-mask-image: url(../../assets/profile.svg);
+  mask-image: url(../../assets/profile.svg);
+  width: 18px;
+  height: 19px;
+}
+
+.logoutIcon {
+  -webkit-mask-image: url(../../assets/logout.svg);
+  mask-image: url(../../assets/logout.svg);
+  width: 16px;
+  height: 20px;
+}
+
+.loginIcon {
+  -webkit-mask-image: url(../../assets/login.svg);
+  mask-image: url(../../assets/login.svg);
+  width: 19px;
+  height: 20px;
+}
+
+.signupIcon {
+  -webkit-mask-image: url(../../assets/login.svg);
+  mask-image: url(../../assets/login.svg);
+  width: 20px;
+  height: 22px;
 }
 
 .logoutButton {

@@ -2,14 +2,6 @@ import { useState } from 'react';
 import styles from './header.module.css';
 import Logo from 'components/logo/logo';
 import cn from 'classnames';
-import basketIcon from '../../assets/basket.svg';
-import profileIcon from '../../assets/profile.svg';
-import loginIcon from '../../assets/login.svg';
-import signupIcon from '../../assets/signup.svg';
-import logoutIcon from '../../assets/logout.svg';
-import coursesIcon from '../../assets/courses.svg';
-
-
 
 type HeaderProps = {
   isAuth: boolean,
@@ -30,7 +22,7 @@ function Header({ isAuth, theme }: HeaderProps) {
           <ul className={cn(styles.header__navList, styles.header__siteNav)}>
             <li className={styles.header__navItem}>
               <a className={styles.siteNav__link} href="#main">
-              <img src={coursesIcon} alt="Courses icon" />
+              <i className={cn(styles.icon, styles.coursesIcon)}></i>
                 Courses
                 </a>
             </li>
@@ -41,7 +33,7 @@ function Header({ isAuth, theme }: HeaderProps) {
           <ul className={cn(styles.header__navList, styles.header__userNav)}>
             <li className={styles.header__navItem}>
               <a className={styles.userNav__link} href="#busket">
-                <img src={basketIcon} alt="Basket icon" />
+                <i className={cn(styles.icon, styles.basketIcon)}></i>
                 Basket
               </a>
             </li>
@@ -49,12 +41,12 @@ function Header({ isAuth, theme }: HeaderProps) {
               ? <>
                 <li className={styles.header__navItem}>
                   <a className={styles.userNav__link} href="#profile">
-                    <img src={profileIcon} alt="Profile icon" />
+                    <i className={cn(styles.icon, styles.profileIcon)}></i>
                     Profile
                   </a>                </li>
                 <li className={styles.header__navItem}>
                   <button className={cn(styles.logoutButton, styles.userNav__link)}>
-                    <img src={logoutIcon} alt="Profile icon" />
+                    <i className={cn(styles.icon, styles.logoutIcon)}></i>
                     Logout
                   </button>
                 </li>
@@ -62,13 +54,13 @@ function Header({ isAuth, theme }: HeaderProps) {
               : <>
                 <li className={styles.header__navItem}>
                   <a className={styles.userNav__link}  href="#login">
-                    <img src={loginIcon} alt="Profile icon" />
+                    <i className={cn(styles.icon, styles.loginIcon)}></i>
                     Login
                   </a>
                 </li>
                 <li className={styles.header__navItem}>
                   <a className={styles.userNav__link}  href="#signup">
-                    <img src={signupIcon} alt="Profile icon" />
+                    <i className={cn(styles.icon, styles.signupIcon)}></i>
                     Sign up
                   </a>
                 </li>
