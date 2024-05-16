@@ -17,7 +17,7 @@ const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
   CAPITAL_LETTERS: /[A-Z]/g,
   SMALL_LETTERS: /[a-z]/g,
   NUMBERS: /\d/g,
-  SPECIAL_CHARACTERS: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g,
+  SPECIAL_CHARACTERS: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
   ANY_LETTER: /[a-zA-Z]/g,
   SPACES: /^\S+@\S+$/g,
   EMAIL_LOCAL_PART: /^[^\s@]+@/g,
