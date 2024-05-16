@@ -1,7 +1,10 @@
 import { it, expect } from 'vitest';
 import { hasSpecialCharacters } from '@utils/form-validation/';
 
-/* Special characters are ! @ # $ % ^ & * ( ) _ + - = [ ] { } ; ' : " \ | , . < > / ? */
+const SPECIAL_CHARACTERS = '! @ # $ % ^ & * ( ) _ + - = [ ] { } ; \' : " \\ | , . < > / ?'.split(
+  ' ',
+);
+
 /* Tested function is expected to return true */
 
 it(`hasSpecialCharacters returns true when string contains
@@ -9,12 +12,9 @@ it(`hasSpecialCharacters returns true when string contains
   expect(hasSpecialCharacters('Test123$')).toBe(true);
 });
 
-it.each('! @ # $ % ^ & * ( ) _ + - = [ ] { } ; \' : " \\ | , . < > / ?'.split(' '))(
-  'hasSpecialCharacters(%s) -> true',
-  (specialCharacter) => {
-    expect(hasSpecialCharacters(specialCharacter)).toBe(true);
-  },
-);
+it.each(SPECIAL_CHARACTERS)('hasSpecialCharacters(%s) -> true', (specialCharacter) => {
+  expect(hasSpecialCharacters(specialCharacter)).toBe(true);
+});
 
 it(`hasSpecialCharacters returns true when string contains
  more than one special character`, () => {
@@ -23,9 +23,7 @@ it(`hasSpecialCharacters returns true when string contains
 
 it(`hasSpecialCharacters returns true when string contains only
  special characters`, ({ expect }) => {
-  expect(
-    hasSpecialCharacters('! @ # $ % ^ & * ( ) _ + - = [ ] { } ; \' : " \\ | , . < > / ?'),
-  ).toBe(true);
+  expect(hasSpecialCharacters(SPECIAL_CHARACTERS.join(' '))).toBe(true);
 });
 
 /* Tested function is expected to return false */
