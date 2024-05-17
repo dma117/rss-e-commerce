@@ -13,11 +13,11 @@ type RegExpKeys =
   | 'DATE';
 
 const REG_EXP_LIST: Record<RegExpKeys, RegExp> = {
-  CAPITAL_LETTERS: /[A-Z]/g,
-  SMALL_LETTERS: /[a-z]/g,
-  NUMBERS: /\d/g,
+  CAPITAL_LETTERS: /[A-Z]/,
+  SMALL_LETTERS: /[a-z]/,
+  NUMBERS: /\d/,
   SPECIAL_CHARACTERS: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
-  ANY_LETTER: /[a-zA-Z]/g,
+  ANY_LETTER: /[a-zA-Z]/,
   SPACES: /[\s\p{Zs}\u180E]+/u,
   EMAIL_LOCAL_PART: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@?/,
   EMAIL_SEPARATOR: /@/,
