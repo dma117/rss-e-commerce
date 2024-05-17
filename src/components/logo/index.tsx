@@ -2,8 +2,8 @@ import styles from './logo.module.css';
 import cn from 'classnames';
 
 type LogoProps = {
-  theme: 'dark' | 'light'
-}
+  theme: 'dark' | 'light';
+};
 
 function Logo({ theme }: LogoProps) {
   return (
