@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './header.module.css';
-import Logo from 'components/logo/logo';
+import Logo from '@components/logo/';
 import cn from 'classnames';
 
 type HeaderProps = {
@@ -72,7 +72,7 @@ function Header({ isAuth, theme }: HeaderProps) {
           className={cn(styles.header__menuButton, { [styles.open]: isOpen })}
           onClick={() => setOpen(!isOpen)}
         >
-          <div></div>
+          <div className={styles.strip}></div>
         </button>
       </div>
     </header>

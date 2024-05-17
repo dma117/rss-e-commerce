@@ -61,7 +61,7 @@ npm run lint:fix
 ```
 npm run test
 ```
-- Preview of finished project
+- Preview finished project
 
 ```
 npm run preview
@@ -71,13 +71,13 @@ npm run preview
 ```
 npm run prepare
 ```
-- Check format code 
+- Check code format with prettier
 
 ```
 npm run format
 ```
 
-- Formating code 
+- Change code format with prettier  
 
 ```
 npm run format:refactor

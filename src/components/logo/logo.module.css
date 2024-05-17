@@ -7,8 +7,7 @@
   display: block;
   -webkit-mask-size: cover;
   mask-size: cover;
-  -webkit-mask-image: url(../../../public/logo.svg);
-  mask-image: url(../../../public/logo.svg);
+  mask-image: url(/logo.svg);
   width: 76px;
   height: 71px;
 }

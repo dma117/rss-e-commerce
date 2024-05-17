@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host --open",
+    "dev": "vite",
+    "dev:host": "vite --host --open",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier ./src",
+    "format": "prettier --check ./src",
     "format:refactor": "prettier --write ./src",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
@@ -41,7 +42,6 @@
     "vite": "^5.2.0",
     "vite-plugin-node-polyfills": "^0.21.0",
     "vite-plugin-stylelint": "^5.3.1",
-    "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0"
   }
 }

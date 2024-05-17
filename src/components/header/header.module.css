@@ -49,7 +49,7 @@
   bottom: -20px;
   left: 50%;
   display: block;
-  width: 0%;
+  width: 0;
   height: 2px;
   transition: all 0.5s;
 }
@@ -101,42 +101,36 @@
 }
 
 .coursesIcon {
-  -webkit-mask-image: url(../../assets/courses.svg);
   mask-image: url(../../assets/courses.svg);
   width: 20px;
   height: 17px;
 }
 
 .basketIcon {
-  -webkit-mask-image: url(../../assets/basket.svg);
   mask-image: url(../../assets/basket.svg);
   width: 23px;
   height: 21px;
 }
 
 .profileIcon {
-  -webkit-mask-image: url(../../assets/profile.svg);
   mask-image: url(../../assets/profile.svg);
   width: 18px;
   height: 19px;
 }
 
 .logoutIcon {
-  -webkit-mask-image: url(../../assets/logout.svg);
   mask-image: url(../../assets/logout.svg);
   width: 16px;
   height: 20px;
 }
 
 .loginIcon {
-  -webkit-mask-image: url(../../assets/login.svg);
   mask-image: url(../../assets/login.svg);
   width: 19px;
   height: 20px;
 }
 
 .signupIcon {
-  -webkit-mask-image: url(../../assets/login.svg);
   mask-image: url(../../assets/login.svg);
   width: 20px;
   height: 22px;
@@ -210,7 +204,7 @@
     cursor: pointer;
   }
 
-  .header__menuButton div {
+  .header__menuButton .strip {
     justify-self: end;
     position: relative;
     width: 100%;
@@ -219,8 +213,8 @@
     transition: all 0.5s;
   }
 
-  .header__menuButton div:after,
-  .header__menuButton div:before {
+  .header__menuButton .strip:after,
+  .header__menuButton .strip:before {
     position: absolute;
     content: '';
     width: 100%;
@@ -229,27 +223,27 @@
     transition: all 0.5s;
   }
 
-  .header__menuButton div:before {
+  .header__menuButton .strip:before {
     top: -10px;
     left: 0;
   }
 
-  .header__menuButton div:after {
+  .header__menuButton .strip:after {
     bottom: -10px;
     left: 0;
   }
 
-  .header__menuButton.open div {
+  .header__menuButton.open .strip {
     background-color: transparent;
   }
 
-  .header__menuButton.open div:before {
+  .header__menuButton.open .strip:before {
     transform: rotate(135deg);
     top: 0;
     left: 0;
   }
 
-  .header__menuButton.open div:after {
+  .header__menuButton.open .strip:after {
     transform: rotate(-135deg);
     bottom: 0;
     left: 0;
