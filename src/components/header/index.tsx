@@ -29,7 +29,7 @@ function Header({ isAuth, theme }: HeaderProps) {
           </ul>
           <ul className={cn(styles.header__navList, styles.header__userNav)}>
             <li className={styles.header__navItem}>
-              <a className={styles.userNav__link} href="#busket">
+              <a className={styles.userNav__link} href="cart">
                 <i className={cn(styles.icon, styles.basketIcon)}></i>
                 Basket
               </a>
