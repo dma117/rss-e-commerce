@@ -6,8 +6,7 @@
 .logoIcon {
   display: block;
   mask-size: cover;
-  mask-size: cover;
-  mask-image: url("/logo.svg");
+  mask-image: url('/logo.svg');
   width: 76px;
   height: 71px;
 }
