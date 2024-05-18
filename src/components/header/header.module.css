@@ -43,7 +43,7 @@
   position: relative;
 }
 
-.header__navItem:after {
+.header__navItem::after {
   content: '';
   position: absolute;
   bottom: -20px;
@@ -54,11 +54,11 @@
   transition: all 0.5s;
 }
 
-.dark .header__navItem:after {
+.dark .header__navItem::after {
   background-color: var(--light-text);
 }
 
-.light .header__navItem:after {
+.light .header__navItem::after {
   background-color: var(--dark-text);
 }
 
@@ -88,7 +88,7 @@
 }
 
 .icon {
-  -webkit-mask-size: cover;
+  mask-size: cover;
   mask-size: cover;
 }
 
@@ -101,37 +101,37 @@
 }
 
 .coursesIcon {
-  mask-image: url(../../assets/courses.svg);
+  mask-image: url("../../assets/courses.svg");
   width: 20px;
   height: 17px;
 }
 
 .basketIcon {
-  mask-image: url(../../assets/basket.svg);
+  mask-image: url("../../assets/basket.svg");
   width: 23px;
   height: 21px;
 }
 
 .profileIcon {
-  mask-image: url(../../assets/profile.svg);
+  mask-image: url("../../assets/profile.svg");
   width: 18px;
   height: 19px;
 }
 
 .logoutIcon {
-  mask-image: url(../../assets/logout.svg);
+  mask-image: url("../../assets/logout.svg");
   width: 16px;
   height: 20px;
 }
 
 .loginIcon {
-  mask-image: url(../../assets/login.svg);
+  mask-image: url("../../assets/login.svg");
   width: 19px;
   height: 20px;
 }
 
 .signupIcon {
-  mask-image: url(../../assets/login.svg);
+  mask-image: url("../../assets/login.svg");
   width: 20px;
   height: 22px;
 }
@@ -155,7 +155,7 @@
   display: none;
 }
 
-@media (max-width: 630px) {
+@media (width <= 630px) {
   .header__nav {
     position: fixed;
     top: 0;
@@ -212,8 +212,8 @@
     transition: all 0.5s;
   }
 
-  .header__menuButton .strip:after,
-  .header__menuButton .strip:before {
+  .header__menuButton .strip::after,
+  .header__menuButton .strip::before {
     position: absolute;
     content: '';
     width: 100%;
@@ -222,12 +222,12 @@
     transition: all 0.5s;
   }
 
-  .header__menuButton .strip:before {
+  .header__menuButton .strip::before {
     top: -10px;
     left: 0;
   }
 
-  .header__menuButton .strip:after {
+  .header__menuButton .strip::after {
     bottom: -10px;
     left: 0;
   }
@@ -236,13 +236,13 @@
     background-color: transparent;
   }
 
-  .header__menuButton.open .strip:before {
+  .header__menuButton.open .strip::before {
     transform: rotate(135deg);
     top: 0;
     left: 0;
   }
 
-  .header__menuButton.open .strip:after {
+  .header__menuButton.open .strip::after {
     transform: rotate(-135deg);
     bottom: 0;
     left: 0;

@@ -1,5 +1,7 @@
 /* Include variables like */
+
 /* Typography */
+
 /* :root {
   --font-family: 'Arial', sans-serif;
   --font-size-base: 16px;
@@ -7,10 +9,9 @@
 } */
 :root {
   --dark-bg: #00093c;
-  --light-bg: #ffffff;
-  --dark-text: #000000;
-  --light-text: #ffffff;
-
+  --light-bg: #fff;
+  --dark-text: #000;
+  --light-text: #fff;
   --desktop-content-width: 1146px;
   --mobile-size: 576px;
 }
