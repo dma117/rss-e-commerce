@@ -154,7 +154,7 @@
   display: none;
 }
 
-@media (width <= 630px) {
+@media (width <= 680px) {
   .header__nav {
     position: fixed;
     top: 0;
