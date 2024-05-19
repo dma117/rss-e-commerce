@@ -12,8 +12,10 @@ function NotFound() {
           Page not found
         </p>
       </div>
-      <a className={styles.link} href='/'>To main</a>
-    </div >
+      <a className={styles.link} href="/">
+        To main
+      </a>
+    </div>
   );
 }
 
