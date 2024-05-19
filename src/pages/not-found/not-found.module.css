@@ -50,6 +50,16 @@
   border-radius: 10px;
 }
 
+@media (pointer: fine) {
+  .link:hover {
+    background-color: var(--hover-accent-color);
+  }
+
+  .link:active {
+    background-color: var(--accent-color);
+  }
+}
+
 @media (width <=500px) {
   .notFound {
     align-items: start;
