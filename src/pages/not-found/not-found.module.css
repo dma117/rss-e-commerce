@@ -45,7 +45,7 @@
   text-align: center;
   font-weight: bold;
   color: var(--light-text);
-  background-color: orange;
+  background-color: var(--accent-color);
   border-radius: 10px;
 }
 
@@ -59,9 +59,10 @@
   }
 }
 
-@media (width <=500px) {
+@media (width <=550px) {
   .notFound {
     align-items: start;
+    gap: 0;
   }
 
   .contentWrapper {
@@ -93,7 +94,7 @@
   }
 }
 
-@media (width <=300px) {
+@media (width <=320px) {
   .contentWrapper {
     width: 100%;
   }
