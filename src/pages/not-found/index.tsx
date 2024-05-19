@@ -4,7 +4,7 @@ import owlImg from '../../assets/owl.svg';
 function NotFound() {
   return (
     <div className={styles.notFound}>
-      <div className={styles.contentWrapper}>
+      <div className={`container ${styles.contentWrapper}`}>
         <img className={styles.owl} src={owlImg} alt="Owl" />
         <p className={styles.text}>
           <span className={styles.status}>404</span>
