@@ -1,11 +1,17 @@
 :root {
+  /* Background colors: */
   --dark-bg: #00093c;
   --light-bg: #fff;
   --light-gray-bg: #e0e0e0;
   --dark-gray-bg: #dddfe6;
+
+  /* Text colors: */
   --dark-text: #000;
+  --light-gray-text: #e0e0e0;
   --dark-gray-text: #4f4f4f;
   --light-text: #fff;
+
+  /* Content sizes: */
   --desktop-content-width: 1146px;
   --mobile-size: 576px;
 }
