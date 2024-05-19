@@ -1,6 +1,8 @@
 :root {
   --dark-bg: #00093c;
   --light-bg: #fff;
+  --light-gray-bg: #e0e0e0;
+  --dark-gray-bg: #dddfe6;
   --dark-text: #000;
   --light-text: #fff;
   --desktop-content-width: 1146px;
