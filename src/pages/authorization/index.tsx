@@ -2,17 +2,16 @@ import styles from './style.module.css';
 
 import { FC } from 'react';
 
-import ButtonUnderlined from '@components/buttons/button-underlined/';
+import NavLink from '@/pages/authorization/components/nav-link';
 
 const Authorization: FC = () => {
   return (
-    <section className={`container ${styles.authorizationContainer}`}>
-      <ButtonUnderlined title={'Login'} onButtonClick={() => console.log('clicked login')} />
-      <ButtonUnderlined
-        title={'Registration'}
-        onButtonClick={() => console.log('clicked registration')}
-      />
-    </section>
+    <nav className={`container ${styles.authorizationContainer}`}>
+      <ul className={styles.nav}>
+        <NavLink title={'Login'} hrefValue="#login" />
+        <NavLink title={'Registration'} hrefValue="#registration" />
+      </ul>
+    </nav>
   );
 };
 

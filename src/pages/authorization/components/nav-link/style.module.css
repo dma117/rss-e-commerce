@@ -1,16 +1,17 @@
-.button {
+.linkContainer {
   position: relative;
   padding-bottom: 1.1rem;
   width: 280px;
   font-size: 1.5rem;
   font-weight: 700;
+  text-align: center;
   color: var(--dark-text);
   background-color: var(--light-bg);
   border: unset;
   border-bottom: 1px solid var(--light-gray-bg);
 }
 
-.button::after {
+.linkContainer::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -23,14 +24,18 @@
 }
 
 @media (pointer: fine) {
-  .button:hover::after {
+  .linkContainer:hover {
+    cursor: pointer;
+  }
+
+  .linkContainer:hover::after {
     left: 0;
     width: 100%;
   }
 }
 
 @media (width <= 680px) {
-  .button {
+  .linkContainer {
     font-size: 1.8rem;
   }
 }
