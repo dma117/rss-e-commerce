@@ -5,14 +5,17 @@ import Login from './pages/login';
 import SignUp from './pages/sign-up';
 import CheckAuth from './components/checkAuth';
 import UserContextProvider from './contexts/userContext';
+import ApiRootContextProvider from './contexts/apiRootContext';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <UserContextProvider>
-        <Layout />
-      </UserContextProvider>
+      <ApiRootContextProvider>
+        <UserContextProvider>
+          <Layout />
+        </UserContextProvider>
+      </ApiRootContextProvider>
     ),
     children: [
       {
@@ -44,11 +47,13 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <UserContextProvider>
-        <CheckAuth>
-          <Layout />
-        </CheckAuth>
-      </UserContextProvider>
+      <ApiRootContextProvider>
+        <UserContextProvider>
+          <CheckAuth>
+            <Layout />
+          </CheckAuth>
+        </UserContextProvider>
+      </ApiRootContextProvider>
     ),
     children: [
       {

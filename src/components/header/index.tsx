@@ -4,6 +4,8 @@ import Logo from '@components/logo/';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { useUserContext } from '@/contexts/useUserContext';
+import { useApiRootContext } from '@/contexts/useApiRootContext';
+import { logout } from '@/utils/api/commercetools-api';
 
 type HeaderProps = {
   theme: 'light' | 'dark';
@@ -11,7 +13,17 @@ type HeaderProps = {
 
 function Header({ theme }: HeaderProps) {
   const [isOpen, setOpen] = useState(false);
-  const { isUserLoggedIn } = useUserContext();
+  const { isUserLoggedIn, setIsUserLoggedIn } = useUserContext();
+  const { setApiRoot } = useApiRootContext();
+
+  function handleLogout() {
+    const response = logout();
+
+    if (response.success && response.apiBuilder) {
+      setApiRoot(response.apiBuilder);
+      setIsUserLoggedIn(false);
+    }
+  }
 
   return (
     <header className={cn(styles.header, styles[theme])}>
@@ -52,7 +64,7 @@ function Header({ theme }: HeaderProps) {
                 <li className={styles.header__navItem}>
                   <button
                     className={cn(styles.logoutButton, styles.userNav__link)}
-                    onClick={() => {}}
+                    onClick={handleLogout}
                   >
                     <i className={cn(styles.icon, styles.logoutIcon)}></i>
                     Logout
