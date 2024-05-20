@@ -4,11 +4,16 @@ import Main from './pages/main';
 import Login from './pages/login';
 import SignUp from './pages/sign-up';
 import CheckAuth from './components/checkAuth';
+import UserContextProvider from './contexts/userContext';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <UserContextProvider>
+        <Layout />
+      </UserContextProvider>
+    ),
     children: [
       {
         path: '/',
@@ -39,9 +44,11 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <CheckAuth>
-        <Layout />
-      </CheckAuth>
+      <UserContextProvider>
+        <CheckAuth>
+          <Layout />
+        </CheckAuth>
+      </UserContextProvider>
     ),
     children: [
       {

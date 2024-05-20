@@ -1,10 +1,11 @@
+import { useUserContext } from '@/contexts/useUserContext';
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const CheckAuth = ({ children }: { children: ReactNode }) => {
-  const isAuth = true;
+  const { isUserLoggedIn } = useUserContext();
 
-  if (isAuth) {
+  if (isUserLoggedIn) {
     return <Navigate to="/" replace />;
   }
 

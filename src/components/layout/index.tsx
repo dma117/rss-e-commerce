@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 const Layout: FC = () => {
   return (
     <>
-      <Header theme="dark" isAuth={false} />
+      <Header theme="dark" />
       <Outlet />
     </>
   );
