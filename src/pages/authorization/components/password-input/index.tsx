@@ -1,20 +1,41 @@
 import React, { useState } from 'react';
-import ValidatableInput, { ValidatableInputProps } from '../validatable-input/';
-import styles from './style.module.css';
 
-const PasswordInput: React.FC<Omit<ValidatableInputProps, 'type'>> = (props) => {
-  const [showPassword, setShowPassword] = useState(false);
+interface PasswordInputProps {
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  title?: string;
+  id?: string;
+  placeholder?: string;
+}
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
-  };
+const PasswordInput: React.FC<PasswordInputProps> = ({
+  name,
+  value,
+  onChange,
+  error,
+  title,
+  id,
+  placeholder,
+}) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
-    <div className={styles.passwordContainer}>
-      <ValidatableInput {...props} type={showPassword ? 'text' : 'password'} />
-      <button type="button" onClick={togglePasswordVisibility} className={styles.toggleButton}>
-        {showPassword ? 'Hide' : 'Show'}
+    <div>
+      <input
+        type={isPasswordVisible ? 'text' : 'password'}
+        name={name}
+        value={value}
+        onChange={onChange}
+        title={title}
+        id={id}
+        placeholder={placeholder}
+      />
+      <button type="button" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+        {isPasswordVisible ? 'Hide' : 'Show'}
       </button>
+      {error && <span>{error}</span>}
     </div>
   );
 };
