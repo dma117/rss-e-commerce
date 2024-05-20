@@ -1,4 +1,3 @@
-import { ValidationFunction, Message } from '@pages/authorization/components/validatable-input/';
 import {
   ALL_SPECIAL_CHARACTERS,
   EMAIL_SPECIAL_CHARACTERS,
@@ -18,14 +17,16 @@ import {
   isStringLongEnough,
 } from '@utils/form-validation/';
 
+type ValidationFunction = (inputValue: string) => string;
+
 type ExcludedKeys = 'EMAIL_LOCAL_PART' | 'EMAIL_SEPARATOR' | 'EMAIL_DOMAIN_PART' | 'EMAIL' | 'DATE';
 
 type MessageArg = Exclude<RegExpKeys, ExcludedKeys> | 'NO_NUMBERS' | 'NO_SPECIAL_CHARACTERS';
 
-type MessageFunction = (rule: MessageArg, fieldName: string) => Message;
+type MessageFunction = (rule: MessageArg, fieldName: string) => string;
 
 const constructMessageForRegex: MessageFunction = (rule, fieldName) => {
-  const MESSAGES: Record<MessageArg, Message> = {
+  const MESSAGES: Record<MessageArg, string> = {
     CAPITAL_LETTERS: 'must contain at least one capital letter (A-Z)',
     SMALL_LETTERS: 'must contain at least one small letter (a-z)',
     NUMBERS: 'must contain at least one digit (0-9)',
@@ -38,6 +39,8 @@ const constructMessageForRegex: MessageFunction = (rule, fieldName) => {
 
   return `${fieldName} ${MESSAGES[rule]}`;
 };
+
+export const supportedCountries = ['US', 'NL', 'RU', 'GB'];
 
 export const validateEmail: ValidationFunction = (inputValue) => {
   const constructMessage = (error: string) =>
@@ -173,9 +176,8 @@ export const validateCity: ValidationFunction = (inputValue) => {
   return '';
 };
 
-export const validatePostalCode: ValidationFunction = (inputValue) => {
-  // TODO: there can be different countries, not only 'NL'
-  if (!isPostalCode(inputValue, 'NL')) {
+export const validatePostalCode = (inputValue: string, countryCode: string) => {
+  if (!isPostalCode(inputValue, countryCode)) {
     return `Must follow the format for the country`;
   }
 

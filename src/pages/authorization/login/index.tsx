@@ -1,22 +1,40 @@
-import styles from '../style.module.css';
+import React from 'react';
+import useFormValidation, { FormState } from '../useFormValidation';
+import { validationRules } from '../validationRules';
+import PasswordInput from '../components/password-input';
 
-import { FC } from 'react';
+const LoginForm: React.FC = () => {
+  const initialState: FormState = { email: '', password: '' };
+  const { values, errors, handleChange, handleSubmit } = useFormValidation(
+    initialState,
+    validationRules,
+  );
 
-import TextInput from '@/pages/authorization/components/text-input';
-import { InputProps } from '@pages/authorization/config';
-import PasswordInput from '@/pages/authorization/components/password-input';
-import SubmitButton from '../components/submit-button';
-
-const LoginForm: FC = () => {
   return (
-    <form className={styles.formContainer}>
-      <TextInput {...InputProps.EMAIL} />
-      <PasswordInput {...InputProps.PASSWORD} />
-      <SubmitButton
-        id="login-button"
-        title="Log in"
-        onButtonClick={() => console.log('login clicked')}
-      />
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" value={values.email} onChange={handleChange} />
+        {errors.email && <span>{errors.email}</span>}
+      </div>
+      <div>
+        <label>Password:</label>
+        <PasswordInput
+          name="password"
+          value={values.password}
+          onChange={handleChange}
+          error={errors.password || ''}
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={
+          Object.values(errors).some((error) => error !== undefined) ||
+          Object.values(values).some((value) => value === '')
+        }
+      >
+        Login
+      </button>
     </form>
   );
 };
