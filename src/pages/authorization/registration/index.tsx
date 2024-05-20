@@ -21,9 +21,9 @@ const RegistrationForm: FC = () => {
       <TextInput {...InputProps.CITY} />
       <TextInput {...InputProps.POSTAL_CODE} />
       <SubmitButton
-        id="registration-button"
-        title="Registration"
-        onButtonClick={() => console.log('registration clicked')}
+        id="singup-button"
+        title="Sign up"
+        onButtonClick={() => console.log('sign-up clicked')}
       />
     </form>
   );

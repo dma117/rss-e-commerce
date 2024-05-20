@@ -14,7 +14,7 @@ const LoginForm: FC = () => {
       <PasswordInput {...InputProps.PASSWORD} />
       <SubmitButton
         id="login-button"
-        title="Login"
+        title="Log in"
         onButtonClick={() => console.log('login clicked')}
       />
     </form>
