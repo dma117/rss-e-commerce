@@ -63,6 +63,12 @@ function Header({ isAuth, theme }: HeaderProps) {
                     Login
                   </NavLink>
                 </li>
+                <li className={styles.header__navItem}>
+                  <NavLink className={styles.userNav__link} to="/sign-up">
+                    <i className={cn(styles.icon, styles.loginIcon)}></i>
+                    Sign Up
+                  </NavLink>
+                </li>
               </>
             )}
           </ul>

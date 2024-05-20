@@ -1,15 +1,19 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/layout';
+import Main from './pages/main';
+import Login from './pages/login';
+import SignUp from './pages/sign-up';
+import CheckAuth from './components/checkAuth';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <Main />,
-      // },
+      {
+        path: '/',
+        element: <Main />,
+      },
       // {
       //   path: '/courses',
       //   element: <Courses />,
@@ -27,17 +31,27 @@ export const router = createBrowserRouter([
       //   element: <Profile />,
       // },
       // {
-      //   path: '/login',
-      //   element: <Login />,
-      // },
-      // {
-      //   path: '/sign-up',
-      //   element: <SignUp />,
-      // },
-      // {
       //   path: '*',
       //   element: <NotFound />
       // },
+    ],
+  },
+  {
+    path: '/',
+    element: (
+      <CheckAuth>
+        <Layout />
+      </CheckAuth>
+    ),
+    children: [
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUp />,
+      },
     ],
   },
 ]);
