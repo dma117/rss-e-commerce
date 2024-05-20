@@ -2,12 +2,15 @@ import styles from './style.module.css';
 
 import { FC } from 'react';
 
-export interface NavLinkProps {
+export interface AuthorizationLinkProps {
   title: string;
   hrefValue: string;
 }
 
-const NavLink: FC<NavLinkProps> = ({ title, hrefValue }: NavLinkProps) => {
+const AuthorizationLink: FC<AuthorizationLinkProps> = ({
+  title,
+  hrefValue,
+}: AuthorizationLinkProps) => {
   return (
     <li className={styles.linkContainer}>
       <a href={hrefValue}>{title}</a>
@@ -15,4 +18,4 @@ const NavLink: FC<NavLinkProps> = ({ title, hrefValue }: NavLinkProps) => {
   );
 };
 
-export default NavLink;
+export default AuthorizationLink;

@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import { FC } from 'react';
 
-import NavLink from '@/pages/authorization/components/nav-link';
+import AuthorizationLink from '@/pages/authorization/components/nav-link';
 import RegistrationForm from '@/pages/authorization/registration/';
 
 const Authorization: FC = () => {
@@ -11,8 +11,8 @@ const Authorization: FC = () => {
     <div className={cn('container', styles.authorizationContainer)}>
       <nav className={styles.navContainer}>
         <ul className={styles.nav}>
-          <NavLink title={'Login'} hrefValue="#login" />
-          <NavLink title={'Sign-up'} hrefValue="#signup" />
+          <AuthorizationLink title={'Login'} hrefValue="#login" />
+          <AuthorizationLink title={'Sign-up'} hrefValue="#signup" />
         </ul>
       </nav>
       <RegistrationForm />
