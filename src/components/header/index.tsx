@@ -47,7 +47,7 @@ function Header({ theme }: HeaderProps) {
                   <NavLink className={styles.userNav__link} to="/profile">
                     <i className={cn(styles.icon, styles.profileIcon)}></i>
                     Profile
-                  </NavLink>{' '}
+                  </NavLink>
                 </li>
                 <li className={styles.header__navItem}>
                   <button
