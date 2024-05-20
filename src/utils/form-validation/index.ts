@@ -101,7 +101,7 @@ export const isAgeAboveMinimum: MinMatchTestFunction = (dateStr, minAge) => {
 
 export const isPostalCode = (postalCode: string, countryCode: string): boolean => {
   if (!(countryCode in POSTAL_CODES_REG_EXP)) {
-    console.error('Got unknown country code: ', countryCode);
+    // console.error('Got unknown country code: ', countryCode);
     return false;
   }
 
