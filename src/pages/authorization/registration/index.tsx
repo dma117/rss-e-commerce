@@ -13,7 +13,7 @@ const RegistrationForm: React.FC = () => {
     street: '',
     city: '',
     postalCode: '',
-    country: '',
+    country: 'US',
   };
   const { values, errors, handleChange, handleSubmit } = useFormValidation(
     initialState,
@@ -68,8 +68,17 @@ const RegistrationForm: React.FC = () => {
         {errors.postalCode && <span>{errors.postalCode}</span>}
       </div>
       <div>
-        <label>Country:</label>
-        <input type="text" name="country" value={values.country} onChange={handleChange} />
+        <label htmlFor="country">Country:</label>
+        <select id="country" name="country" value={values.country} onChange={handleChange}>
+          <option value="US" selected>
+            US
+          </option>
+          <option value="DE">DE</option>
+          <option value="NL">NL</option>
+          <option value="RU">RU</option>
+        </select>
+        {/* <label></label> */}
+        {/* <input type="text" name="country" value={values.country} onChange={handleChange} /> */}
         {errors.country && <span>{errors.country}</span>}
       </div>
       <button

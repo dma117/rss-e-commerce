@@ -24,7 +24,10 @@ const useFormValidation = (
     }
   }, [errors, isSubmitting]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, ...args: string[]) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    ...args: string[]
+  ) => {
     const { name, value } = e.target;
 
     setValues({
