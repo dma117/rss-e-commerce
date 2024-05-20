@@ -1,7 +1,7 @@
 .linkContainer {
   position: relative;
   padding-bottom: 1.1rem;
-  width: 280px;
+  width: 50%;
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
@@ -36,6 +36,7 @@
 
 @media (width <= 680px) {
   .linkContainer {
-    font-size: 1.8rem;
+    z-index: -1;
+    font-size: 1.7rem;
   }
 }

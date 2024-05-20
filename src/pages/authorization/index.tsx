@@ -9,10 +9,10 @@ import RegistrationForm from '@/pages/authorization/registration/';
 const Authorization: FC = () => {
   return (
     <div className={cn('container', styles.authorizationContainer)}>
-      <nav>
+      <nav className={styles.navContainer}>
         <ul className={styles.nav}>
           <NavLink title={'Login'} hrefValue="#login" />
-          <NavLink title={'Registration'} hrefValue="#registration" />
+          <NavLink title={'Sign-up'} hrefValue="#signup" />
         </ul>
       </nav>
       <RegistrationForm />
