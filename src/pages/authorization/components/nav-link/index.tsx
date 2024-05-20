@@ -2,12 +2,12 @@ import styles from './style.module.css';
 
 import { FC } from 'react';
 
-interface ButtonUnderlinedProps {
+export interface NavLinkProps {
   title: string;
   hrefValue: string;
 }
 
-const NavLink: FC<ButtonUnderlinedProps> = ({ title, hrefValue }: ButtonUnderlinedProps) => {
+const NavLink: FC<NavLinkProps> = ({ title, hrefValue }: NavLinkProps) => {
   return (
     <li className={styles.linkContainer}>
       <a href={hrefValue}>{title}</a>

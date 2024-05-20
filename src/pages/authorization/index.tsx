@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { FC } from 'react';
 
 import NavLink from '@/pages/authorization/components/nav-link';
+import RegistrationForm from '@/pages/authorization/registration/';
 
 const Authorization: FC = () => {
   return (
@@ -14,6 +15,7 @@ const Authorization: FC = () => {
           <NavLink title={'Registration'} hrefValue="#registration" />
         </ul>
       </nav>
+      <RegistrationForm />
     </div>
   );
 };
