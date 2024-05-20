@@ -7,9 +7,9 @@ import Courses from './pages/courses/';
 import AboutUs from './pages/about-us';
 import Profile from './pages/profile';
 import Cart from './pages/cart';
-import NotFound from './pages/not-found/';
 import CheckAuth from './components/checkAuth';
 import UserContextProvider from './contexts/userContext';
+import NotFound from './pages/not-found';
 
 export const router = createBrowserRouter([
   {
