@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './header.module.css';
 import Logo from '@components/logo/';
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 type HeaderProps = {
   isAuth: boolean;
@@ -18,29 +19,34 @@ function Header({ isAuth, theme }: HeaderProps) {
         <nav className={cn(styles.header__nav, { [styles.active]: isOpen })}>
           <ul className={cn(styles.header__navList, styles.header__siteNav)}>
             <li className={styles.header__navItem}>
-              <a className={styles.siteNav__link} href="#main">
+              <NavLink
+                className={({ isActive }) =>
+                  cn(styles.siteNav__link, { [styles.linkActive]: isActive })
+                }
+                to="/courses"
+              >
                 <i className={cn(styles.icon, styles.coursesIcon)}></i>
                 Courses
-              </a>
+              </NavLink>
             </li>
             <li className={styles.header__navItem}>
-              <a href="#about">About us</a>
+              <NavLink to="/about">About us</NavLink>
             </li>
           </ul>
           <ul className={cn(styles.header__navList, styles.header__userNav)}>
             <li className={styles.header__navItem}>
-              <a className={styles.userNav__link} href="cart">
+              <NavLink className={styles.userNav__link} to="/cart">
                 <i className={cn(styles.icon, styles.basketIcon)}></i>
                 Basket
-              </a>
+              </NavLink>
             </li>
             {isAuth ? (
               <>
                 <li className={styles.header__navItem}>
-                  <a className={styles.userNav__link} href="#profile">
+                  <NavLink className={styles.userNav__link} to="/profile">
                     <i className={cn(styles.icon, styles.profileIcon)}></i>
                     Profile
-                  </a>{' '}
+                  </NavLink>{' '}
                 </li>
                 <li className={styles.header__navItem}>
                   <button className={cn(styles.logoutButton, styles.userNav__link)}>
@@ -52,16 +58,10 @@ function Header({ isAuth, theme }: HeaderProps) {
             ) : (
               <>
                 <li className={styles.header__navItem}>
-                  <a className={styles.userNav__link} href="#login">
+                  <NavLink className={styles.userNav__link} to="/login">
                     <i className={cn(styles.icon, styles.loginIcon)}></i>
                     Login
-                  </a>
-                </li>
-                <li className={styles.header__navItem}>
-                  <a className={styles.userNav__link} href="#signup">
-                    <i className={cn(styles.icon, styles.signupIcon)}></i>
-                    Sign up
-                  </a>
+                  </NavLink>
                 </li>
               </>
             )}

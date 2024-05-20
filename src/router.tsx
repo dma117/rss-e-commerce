@@ -1,19 +1,43 @@
-import { createBrowserRouter } from "react-router-dom";
-import Main from "./pages/main";
-import Cart from "./pages/cart";
-import NotFound from "./pages/components/not-found";
+import { createBrowserRouter } from 'react-router-dom';
+import Layout from './components/layout';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />
-  },
-  {
-    path: '/cart',
-    element: <Cart />
-  },
-  {
-    path: '*',
-    element: <NotFound />
+    element: <Layout />,
+    children: [
+      // {
+      //   path: '/',
+      //   element: <Main />,
+      // },
+      // {
+      //   path: '/courses',
+      //   element: <Courses />,
+      // },
+      // {
+      //   path: '/about-us',
+      //   element: <AboutUs />,
+      // },
+      // {
+      //   path: '/Cart',
+      //   element: <Cart />,
+      // },
+      // {
+      //   path: '/profile',
+      //   element: <Profile />,
+      // },
+      // {
+      //   path: '/login',
+      //   element: <Login />,
+      // },
+      // {
+      //   path: '/sign-up',
+      //   element: <SignUp />,
+      // },
+      // {
+      //   path: '*',
+      //   element: <NotFound />
+      // },
+    ],
   },
 ]);
