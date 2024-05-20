@@ -59,7 +59,12 @@ const RegistrationForm: React.FC = () => {
       </div>
       <div>
         <label>Postal Code:</label>
-        <input type="text" name="postalCode" value={values.postalCode} onChange={handleChange} />
+        <input
+          type="text"
+          name="postalCode"
+          value={values.postalCode}
+          onChange={(e) => handleChange(e, values['country'])}
+        />
         {errors.postalCode && <span>{errors.postalCode}</span>}
       </div>
       <div>

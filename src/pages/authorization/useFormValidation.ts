@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export type FormState = Record<string, string>;
 type FormErrors = Record<string, string | undefined>;
 
-type ValidationFunction = (value: string) => string;
+type ValidationFunction = (value: string, ...args: string[]) => string;
 
 const useFormValidation = (
   initialState: FormState,
@@ -24,18 +24,27 @@ const useFormValidation = (
     }
   }, [errors, isSubmitting]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, ...args: string[]) => {
     const { name, value } = e.target;
+
     setValues({
       ...values,
       [name]: value,
     });
+
     if (validate[name]) {
-      const error = validate[name](value);
+      const error = validate[name](value, ...args);
       setErrors((prevErrors) => ({
         ...prevErrors,
         [name]: error || undefined,
       }));
+    }
+
+    if (name === 'country') {
+      setErrors({
+        ...errors,
+        postalCode: validate['postalCode'](values['postalCode'], value),
+      });
     }
   };
 

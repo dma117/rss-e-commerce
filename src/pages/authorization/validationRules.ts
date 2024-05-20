@@ -17,6 +17,6 @@ export const validationRules = {
   dateOfBirth: validateDateOfBirth,
   street: validateStreet,
   city: validateCity,
-  postalCode: (value: string) => validatePostalCode(value, 'US'),
+  postalCode: validatePostalCode,
   country: (value: string) => (value ? '' : 'Country is required'),
 };
