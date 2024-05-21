@@ -4,7 +4,8 @@ import cn from 'classnames';
 import { FC } from 'react';
 
 import AuthorizationLink from '@/pages/authorization/components/nav-link';
-import RegistrationForm from '@/pages/authorization/registration/';
+// import RegistrationForm from '@/pages/authorization/registration/';
+import LoginForm from '@/pages/authorization/login/';
 
 const Authorization: FC = () => {
   return (
@@ -15,7 +16,7 @@ const Authorization: FC = () => {
           <AuthorizationLink title={'Sign-up'} hrefValue="#signup" />
         </ul>
       </nav>
-      <RegistrationForm />
+      <LoginForm />
     </div>
   );
 };
