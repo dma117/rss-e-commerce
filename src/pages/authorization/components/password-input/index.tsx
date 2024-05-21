@@ -1,3 +1,5 @@
+import authorizationStyles from '../../style.module.css';
+import styles from './style.module.css';
 import React, { useState } from 'react';
 
 interface PasswordInputProps {
@@ -22,7 +24,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
-    <div>
+    <div className={styles.passwordContainer}>
       <input
         type={isPasswordVisible ? 'text' : 'password'}
         name={name}
@@ -31,8 +33,13 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         title={title}
         id={id}
         placeholder={placeholder}
+        className={authorizationStyles.input}
       />
-      <button type="button" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+      <button
+        type="button"
+        onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+        className={styles.toggleButton}
+      >
         {isPasswordVisible ? 'Hide' : 'Show'}
       </button>
       {error && <span>{error}</span>}

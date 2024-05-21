@@ -1,9 +1,11 @@
-import React from 'react';
+import styles from '@pages/authorization/style.module.css';
+import { FC } from 'react';
 import useFormValidation from '../useFormValidation';
 import { validationRules } from '../validationRules';
-import PasswordInput from '../components/password-input';
+import PasswordInput from '../components/password-input/';
+import { supportedCountries } from '../validation';
 
-const RegistrationForm: React.FC = () => {
+const RegistrationForm: FC = () => {
   const initialState = {
     email: '',
     password: '',
@@ -21,72 +23,114 @@ const RegistrationForm: React.FC = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <div className={styles.fieldContainer}>
         <label>Email:</label>
-        <input type="email" name="email" value={values.email} onChange={handleChange} />
-        {errors.email && <span>{errors.email}</span>}
+        <input
+          className={styles.input}
+          type="email"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+        />
+        {errors.email && <span className={styles.error}>{errors.email}</span>}
       </div>
-      <div>
+      <div className={styles.fieldContainer}>
         <label>Password:</label>
         <PasswordInput name="password" value={values.password} onChange={handleChange} />
-        {errors.password && <span>{errors.password}</span>}
+        {errors.password && <span className={styles.error}>{errors.password}</span>}
       </div>
-      <div>
+      <div className={styles.fieldContainer}>
         <label>First Name:</label>
-        <input type="text" name="firstName" value={values.firstName} onChange={handleChange} />
-        {errors.firstName && <span>{errors.firstName}</span>}
+        <input
+          className={styles.input}
+          type="text"
+          name="firstName"
+          value={values.firstName}
+          onChange={handleChange}
+        />
+        {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
       </div>
-      <div>
+      <div className={styles.fieldContainer}>
         <label>Last Name:</label>
-        <input type="text" name="lastName" value={values.lastName} onChange={handleChange} />
-        {errors.lastName && <span>{errors.lastName}</span>}
+        <input
+          className={styles.input}
+          type="text"
+          name="lastName"
+          value={values.lastName}
+          onChange={handleChange}
+        />
+        {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
       </div>
-      <div>
+      <div className={styles.fieldContainer}>
         <label>Date of Birth:</label>
-        <input type="date" name="dateOfBirth" value={values.dateOfBirth} onChange={handleChange} />
-        {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
+        <input
+          className={styles.input}
+          type="date"
+          name="dateOfBirth"
+          value={values.dateOfBirth}
+          onChange={handleChange}
+        />
+        {errors.dateOfBirth && <span className={styles.error}>{errors.dateOfBirth}</span>}
       </div>
-      <div>
-        <label>Street:</label>
-        <input type="text" name="street" value={values.street} onChange={handleChange} />
-        {errors.street && <span>{errors.street}</span>}
+      <div className={styles.fieldContainer}>
+        <label htmlFor="country">Country:</label>
+        <select
+          className={styles.countriesSelect}
+          id="country"
+          name="country"
+          value={values.country}
+          onChange={handleChange}
+        >
+          <option value="US" selected>
+            United States
+          </option>
+          <option value="DE">Germany</option>
+          <option value="NL">Netherlands</option>
+          <option value="RU">Russian</option>
+        </select>
+        {errors.country && <span className={styles.error}>{errors.country}</span>}
       </div>
-      <div>
-        <label>City:</label>
-        <input type="text" name="city" value={values.city} onChange={handleChange} />
-        {errors.city && <span>{errors.city}</span>}
-      </div>
-      <div>
+      <div className={styles.fieldContainer}>
         <label>Postal Code:</label>
         <input
+          className={styles.input}
           type="text"
           name="postalCode"
           value={values.postalCode}
           onChange={(e) => handleChange(e, values['country'])}
         />
-        {errors.postalCode && <span>{errors.postalCode}</span>}
+        {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
       </div>
-      <div>
-        <label htmlFor="country">Country:</label>
-        <select id="country" name="country" value={values.country} onChange={handleChange}>
-          <option value="US" selected>
-            US
-          </option>
-          <option value="DE">DE</option>
-          <option value="NL">NL</option>
-          <option value="RU">RU</option>
-        </select>
-        {/* <label></label> */}
-        {/* <input type="text" name="country" value={values.country} onChange={handleChange} /> */}
-        {errors.country && <span>{errors.country}</span>}
+      <div className={styles.fieldContainer}>
+        <label>City:</label>
+        <input
+          className={styles.input}
+          type="text"
+          name="city"
+          value={values.city}
+          onChange={handleChange}
+        />
+        {errors.city && <span className={styles.error}>{errors.city}</span>}
+      </div>
+      <div className={styles.fieldContainer}>
+        <label>Street:</label>
+        <input
+          className={styles.input}
+          type="text"
+          name="street"
+          value={values.street}
+          onChange={handleChange}
+        />
+        {errors.street && <span className={styles.error}>{errors.street}</span>}
       </div>
       <button
         type="submit"
         disabled={
           Object.values(errors).some((error) => error !== undefined) ||
-          Object.values(values).some((value) => value === '')
+          Object.values(values).some((value) => value === '' && !supportedCountries.includes(value))
         }
+        className={styles.submitButton}
       >
         Signup
       </button>
