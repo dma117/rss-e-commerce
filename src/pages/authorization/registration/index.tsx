@@ -128,6 +128,7 @@ const RegistrationForm: FC = () => {
         type="submit"
         disabled={
           Object.values(errors).some((error) => error !== undefined) ||
+          // Object.keys(values).some((key) => key !== 'country' && values[key] === '')
           Object.values(values).some((value) => value === '' && !supportedCountries.includes(value))
         }
         className={styles.submitButton}

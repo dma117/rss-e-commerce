@@ -46,9 +46,10 @@ const useFormValidation = (
     const postalCodeName = 'postalCode';
     if (name === 'country' && values[postalCodeName]) {
       if (errors[postalCodeName] || values[postalCodeName] !== '') {
+        const error = validate[postalCodeName](values[postalCodeName], value);
         setErrors({
           ...errors,
-          postalCode: validate[postalCodeName](values[postalCodeName], value),
+          [postalCodeName]: error || undefined,
         });
       }
     }
