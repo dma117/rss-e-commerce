@@ -1,6 +1,6 @@
-import authorizationStyles from '../../style.module.css';
+import authorizationStyles from '@pages/authorization/style.module.css';
 import styles from './style.module.css';
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
 interface PasswordInputProps {
   name: string;
@@ -12,7 +12,7 @@ interface PasswordInputProps {
   placeholder?: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({
+const PasswordInput: FC<PasswordInputProps> = ({
   name,
   value,
   onChange,
