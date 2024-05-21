@@ -81,9 +81,7 @@ const RegistrationForm: FC = () => {
           value={values.country}
           onChange={handleChange}
         >
-          <option value="US" selected>
-            United States
-          </option>
+          <option value="US">United States</option>
           <option value="DE">Germany</option>
           <option value="NL">Netherlands</option>
           <option value="RU">Russian</option>
