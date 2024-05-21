@@ -17,7 +17,7 @@ const LoginForm: FC = () => {
         <label>Email:</label>
         <input
           className={styles.input}
-          type="email"
+          type="text"
           name="email"
           value={values.email}
           onChange={handleChange}
