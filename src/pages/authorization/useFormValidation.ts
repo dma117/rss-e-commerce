@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export type FormState = Record<string, string>;
 type FormErrors = Record<string, string | undefined>;
@@ -11,18 +11,6 @@ const useFormValidation = (
 ) => {
   const [values, setValues] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (isSubmitting) {
-      const noErrors = Object.keys(errors).length === 0;
-      if (noErrors) {
-        console.log('Form is valid and can be submitted!');
-        // Submit form
-      }
-      setIsSubmitting(false);
-    }
-  }, [errors, isSubmitting]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -57,18 +45,9 @@ const useFormValidation = (
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const validationErrors: FormErrors = {};
-    Object.keys(validate).forEach((key) => {
-      const error = validate[key](values[key]);
-      if (error) {
-        validationErrors[key] = error;
-      }
-    });
-    setErrors(validationErrors);
-    setIsSubmitting(true);
   };
 
-  return { values, errors, handleChange, handleSubmit, isSubmitting };
+  return { values, errors, handleChange, handleSubmit };
 };
 
 export default useFormValidation;
