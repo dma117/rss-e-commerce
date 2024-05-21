@@ -84,7 +84,7 @@ const RegistrationForm: FC = () => {
           <option value="US">United States</option>
           <option value="DE">Germany</option>
           <option value="NL">Netherlands</option>
-          <option value="RU">Russian</option>
+          <option value="RU">Russia</option>
         </select>
         {errors.country && <span className={styles.error}>{errors.country}</span>}
       </div>
