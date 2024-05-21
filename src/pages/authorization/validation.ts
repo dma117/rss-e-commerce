@@ -1,5 +1,4 @@
 import {
-  ALL_SPECIAL_CHARACTERS,
   EMAIL_SPECIAL_CHARACTERS,
   RegExpKeys,
   hasAnyLetter,
@@ -30,11 +29,11 @@ const constructMessageForRegex: MessageFunction = (rule, fieldName) => {
     CAPITAL_LETTERS: 'must contain at least one capital letter (A-Z)',
     SMALL_LETTERS: 'must contain at least one small letter (a-z)',
     NUMBERS: 'must contain at least one digit (0-9)',
-    SPECIAL_CHARACTERS: `must contain at least one special character (e.g. ${ALL_SPECIAL_CHARACTERS}`,
+    SPECIAL_CHARACTERS: `must contain at least one special character (e.g. !@#$%^&*)`,
     ANY_LETTER: 'must contain at least one letter (a-z, A-Z)',
     SPACES: 'must not contain space characters',
     NO_NUMBERS: 'must not contain numbers',
-    NO_SPECIAL_CHARACTERS: `must not contain special characters (e.g. ${ALL_SPECIAL_CHARACTERS}`,
+    NO_SPECIAL_CHARACTERS: `must not contain special characters (e.g. !@#$%^&*)`,
   };
 
   return `${fieldName} ${MESSAGES[rule]}`;
@@ -73,16 +72,16 @@ export const validatePassword: ValidationFunction = (inputValue) => {
   const FIELD_NAME = 'Password';
   const MIN_LENGTH = 8;
 
-  if (!isStringLongEnough(inputValue, MIN_LENGTH)) {
-    return `Password must be at least ${MIN_LENGTH} characters long.`;
-  }
-
-  if (!hasCapitalLetters(inputValue)) {
-    return constructMessageForRegex('CAPITAL_LETTERS', FIELD_NAME);
+  if (hasSpaces(inputValue)) {
+    return constructMessageForRegex('SPACES', FIELD_NAME);
   }
 
   if (!hasSmallLetters(inputValue)) {
     return constructMessageForRegex('SMALL_LETTERS', FIELD_NAME);
+  }
+
+  if (!hasCapitalLetters(inputValue)) {
+    return constructMessageForRegex('CAPITAL_LETTERS', FIELD_NAME);
   }
 
   if (!hasNumbers(inputValue)) {
@@ -93,8 +92,8 @@ export const validatePassword: ValidationFunction = (inputValue) => {
     return constructMessageForRegex('SPECIAL_CHARACTERS', FIELD_NAME);
   }
 
-  if (hasSpaces(inputValue)) {
-    return constructMessageForRegex('SPACES', FIELD_NAME);
+  if (!isStringLongEnough(inputValue, MIN_LENGTH)) {
+    return `Password must be at least ${MIN_LENGTH} characters long.`;
   }
 
   return '';
@@ -103,16 +102,16 @@ export const validatePassword: ValidationFunction = (inputValue) => {
 export const validateFirstName: ValidationFunction = (inputValue) => {
   const FIELD_NAME = 'First name';
 
-  if (!hasAnyLetter(inputValue)) {
-    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
+  if (hasSpecialCharacters(inputValue) || hasSpaces(inputValue)) {
+    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', FIELD_NAME);
   }
 
   if (hasNumbers(inputValue)) {
     return constructMessageForRegex('NO_NUMBERS', FIELD_NAME);
   }
 
-  if (hasSpecialCharacters(inputValue)) {
-    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', FIELD_NAME);
+  if (!hasAnyLetter(inputValue)) {
+    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
   }
 
   return '';
@@ -121,16 +120,16 @@ export const validateFirstName: ValidationFunction = (inputValue) => {
 export const validateLastName: ValidationFunction = (inputValue) => {
   const FIELD_NAME = 'Last name';
 
-  if (!hasAnyLetter(inputValue)) {
-    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
+  if (hasSpecialCharacters(inputValue) || hasSpaces(inputValue)) {
+    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', FIELD_NAME);
   }
 
   if (hasNumbers(inputValue)) {
     return constructMessageForRegex('NO_NUMBERS', FIELD_NAME);
   }
 
-  if (hasSpecialCharacters(inputValue)) {
-    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', FIELD_NAME);
+  if (!hasAnyLetter(inputValue)) {
+    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
   }
 
   return '';
@@ -161,16 +160,16 @@ export const validateStreet: ValidationFunction = (inputValue) => {
 export const validateCity: ValidationFunction = (inputValue) => {
   const FIELD_NAME = 'City';
 
-  if (!hasAnyLetter(inputValue)) {
-    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
-  }
-
-  if (hasSpecialCharacters(inputValue)) {
-    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', inputValue);
+  if (hasSpecialCharacters(inputValue) || hasSpaces(inputValue)) {
+    return constructMessageForRegex('NO_SPECIAL_CHARACTERS', FIELD_NAME);
   }
 
   if (hasNumbers(inputValue)) {
-    return constructMessageForRegex('NO_NUMBERS', inputValue);
+    return constructMessageForRegex('NO_NUMBERS', FIELD_NAME);
+  }
+
+  if (!hasAnyLetter(inputValue)) {
+    return constructMessageForRegex('ANY_LETTER', FIELD_NAME);
   }
 
   return '';
