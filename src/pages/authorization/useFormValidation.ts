@@ -43,11 +43,14 @@ const useFormValidation = (
       }));
     }
 
-    if (name === 'country') {
-      setErrors({
-        ...errors,
-        postalCode: validate['postalCode'](values['postalCode'], value),
-      });
+    const postalCodeName = 'postalCode';
+    if (name === 'country' && values[postalCodeName]) {
+      if (errors[postalCodeName] || values[postalCodeName] !== '') {
+        setErrors({
+          ...errors,
+          postalCode: validate[postalCodeName](values[postalCodeName], value),
+        });
+      }
     }
   };
 
