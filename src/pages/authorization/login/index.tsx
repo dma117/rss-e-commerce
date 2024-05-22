@@ -25,7 +25,6 @@ const LoginForm: FC = () => {
 
       if (response.success && response.apiBuilder) {
         setApiRoot(response.apiBuilder);
-        console.log(response.apiBuilder);
         setIsUserLoggedIn(true);
       } else if (response.errorMessage) {
         notify(response.errorMessage);
