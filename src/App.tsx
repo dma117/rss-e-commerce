@@ -26,7 +26,7 @@ function App() {
       const currentApiRoot = createAnonymousApiBuilder();
       setApiRoot(currentApiRoot);
     }
-  });
+  }, [setApiRoot, setIsUserLoggedIn]);
 
   return (
     <>
