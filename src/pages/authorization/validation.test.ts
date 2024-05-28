@@ -77,7 +77,7 @@ describe('Validation Functions', () => {
     });
 
     it('should return error for password shorter than minimum length', () => {
-      expect(validatePassword('Tes1!')).toBe('Password must be at least 8 characters long.');
+      expect(validatePassword('Test1!')).toBe('Password must be at least 8 characters long.');
     });
 
     it('should return no error for valid password', () => {
