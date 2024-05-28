@@ -31,8 +31,17 @@ const useFormValidation = (
       }));
     }
 
-    const postalCodeName = 'postalCode';
-    if (name === 'country' && values[postalCodeName]) {
+    if (name === 'shippingCountry') {
+      validatePostalCode('shippingPostalCode', value);
+    }
+
+    if (name === 'billingCountry') {
+      validatePostalCode('billingPostalCode', value);
+    }
+  };
+
+  const validatePostalCode = (postalCodeName: string, value: string) => {
+    if (values[postalCodeName]) {
       if (errors[postalCodeName] || values[postalCodeName] !== '') {
         const error = validate[postalCodeName](values[postalCodeName], value);
         setErrors({
@@ -43,7 +52,11 @@ const useFormValidation = (
     }
   };
 
-  return { values, errors, handleChange };
+  const isFormValid = () =>
+    Object.values(errors).some((error) => error !== undefined) ||
+    Object.keys(values).some((key) => !key.includes('country') && values[key] === '');
+
+  return { values, errors, handleChange, isFormValid };
 };
 
 export default useFormValidation;

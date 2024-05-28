@@ -23,12 +23,20 @@ const RegistrationForm: FC = () => {
     firstName: '',
     lastName: '',
     dateOfBirth: '',
-    street: '',
-    city: '',
-    postalCode: '',
-    country: 'US',
+    shippingStreet: '',
+    shippingCity: '',
+    shippingPostalCode: '',
+    shippingCountry: 'US',
+    billingStreet: '',
+    billingCity: '',
+    billingPostalCode: '',
+    billingCountry: 'US',
   };
-  const { values, errors, handleChange } = useFormValidation(initialState, validationRules);
+
+  const { values, errors, handleChange, isFormValid } = useFormValidation(
+    initialState,
+    validationRules,
+  );
   const { apiRoot, setApiRoot } = useApiRootContext();
   const { setIsUserLoggedIn } = useUserContext();
 
@@ -115,61 +123,120 @@ const RegistrationForm: FC = () => {
         />
         {errors.dateOfBirth && <span className={styles.error}>{errors.dateOfBirth}</span>}
       </div>
-      <div className={styles.fieldContainer}>
-        <label htmlFor="country">Country:</label>
-        <select
-          className={styles.countriesSelect}
-          id="country"
-          name="country"
-          value={values.country}
-          onChange={handleChange}
-        >
-          <option value="US">United States</option>
-          <option value="DE">Germany</option>
-          <option value="NL">Netherlands</option>
-          <option value="RU">Russia</option>
-        </select>
-        {errors.country && <span className={styles.error}>{errors.country}</span>}
-      </div>
-      <div className={styles.fieldContainer}>
-        <label>Postal Code:</label>
-        <input
-          className={styles.input}
-          type="text"
-          name="postalCode"
-          value={values.postalCode}
-          onChange={(e) => handleChange(e, values['country'])}
-        />
-        {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
-      </div>
-      <div className={styles.fieldContainer}>
-        <label>City:</label>
-        <input
-          className={styles.input}
-          type="text"
-          name="city"
-          value={values.city}
-          onChange={handleChange}
-        />
-        {errors.city && <span className={styles.error}>{errors.city}</span>}
-      </div>
-      <div className={styles.fieldContainer}>
-        <label>Street:</label>
-        <input
-          className={styles.input}
-          type="text"
-          name="street"
-          value={values.street}
-          onChange={handleChange}
-        />
-        {errors.street && <span className={styles.error}>{errors.street}</span>}
-      </div>
+
+      <fieldset>
+        <legend>Shipping Address</legend>
+        <div className={styles.fieldContainer}>
+          <label htmlFor="shippingCountry">Country:</label>
+          <select
+            className={styles.countriesSelect}
+            id="shippingCountry"
+            name="shippingCountry"
+            value={values.shippingCountry}
+            onChange={handleChange}
+          >
+            <option value="US">United States</option>
+            <option value="DE">Germany</option>
+            <option value="NL">Netherlands</option>
+            <option value="RU">Russia</option>
+          </select>
+          {errors.shippingCountry && <span className={styles.error}>{errors.shippingCountry}</span>}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>Postal Code:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="shippingPostalCode"
+            value={values.shippingPostalCode}
+            onChange={(e) => handleChange(e, values['shippingCountry'])}
+          />
+          {errors.shippingPostalCode && (
+            <span className={styles.error}>{errors.shippingPostalCode}</span>
+          )}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>City:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="shippingCity"
+            value={values.shippingCity}
+            onChange={handleChange}
+          />
+          {errors.shippingCity && <span className={styles.error}>{errors.shippingCity}</span>}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>Street:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="shippingStreet"
+            value={values.shippingStreet}
+            onChange={handleChange}
+          />
+          {errors.shippingStreet && <span className={styles.error}>{errors.shippingStreet}</span>}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Billing Address</legend>
+        <div className={styles.fieldContainer}>
+          <label htmlFor="billingCountry">Country:</label>
+          <select
+            className={styles.countriesSelect}
+            id="billingCountry"
+            name="billingCountry"
+            value={values.billingCountry}
+            onChange={handleChange}
+          >
+            <option value="US">United States</option>
+            <option value="DE">Germany</option>
+            <option value="NL">Netherlands</option>
+            <option value="RU">Russia</option>
+          </select>
+          {errors.billingCountry && <span className={styles.error}>{errors.billingCountry}</span>}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>Postal Code:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="billingPostalCode"
+            value={values.billingPostalCode}
+            onChange={(e) => handleChange(e, values['billingCountry'])}
+          />
+          {errors.billingPostalCode && (
+            <span className={styles.error}>{errors.billingPostalCode}</span>
+          )}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>City:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="billingCity"
+            value={values.billingCity}
+            onChange={handleChange}
+          />
+          {errors.billingCity && <span className={styles.error}>{errors.billingCity}</span>}
+        </div>
+        <div className={styles.fieldContainer}>
+          <label>Street:</label>
+          <input
+            className={styles.input}
+            type="text"
+            name="billingStreet"
+            value={values.billingStreet}
+            onChange={handleChange}
+          />
+          {errors.billingStreet && <span className={styles.error}>{errors.billingStreet}</span>}
+        </div>
+      </fieldset>
+
       <button
         type="submit"
-        disabled={
-          Object.values(errors).some((error) => error !== undefined) ||
-          Object.keys(values).some((key) => key !== 'country' && values[key] === '')
-        }
+        disabled={isFormValid()}
         className={styles.submitButton}
         onClick={registerUser}
       >

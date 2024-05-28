@@ -15,7 +15,10 @@ export const validationRules = {
   firstName: validateFirstName,
   lastName: validateLastName,
   dateOfBirth: validateDateOfBirth,
-  street: validateStreet,
-  city: validateCity,
-  postalCode: validatePostalCode,
+  shippingStreet: validateStreet,
+  shippingCity: validateCity,
+  shippingPostalCode: validatePostalCode,
+  billingStreet: validateStreet,
+  billingCity: validateCity,
+  billingPostalCode: validatePostalCode,
 };

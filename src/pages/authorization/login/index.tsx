@@ -16,7 +16,10 @@ import PasswordInput from '../components/password-input';
 
 const LoginForm: FC = () => {
   const initialState: FormState = { email: '', password: '' };
-  const { values, errors, handleChange } = useFormValidation(initialState, validationRules);
+  const { values, errors, handleChange, isFormValid } = useFormValidation(
+    initialState,
+    validationRules,
+  );
 
   const { apiRoot, setApiRoot } = useApiRootContext();
   const { setIsUserLoggedIn } = useUserContext();
@@ -56,10 +59,7 @@ const LoginForm: FC = () => {
       </div>
       <button
         type="submit"
-        disabled={
-          Object.values(errors).some((error) => error !== undefined) ||
-          Object.values(values).some((value) => value === '')
-        }
+        disabled={isFormValid()}
         className={styles.submitButton}
         onClick={loginUser}
       >
