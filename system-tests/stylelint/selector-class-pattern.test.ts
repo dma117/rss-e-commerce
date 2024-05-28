@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 // import * as os from 'os';
 
+// const { EOL } = os;
 const EOL = '\n';
 
 describe('Test CSS Selector Pattern', () => {
