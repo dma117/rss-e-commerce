@@ -1,5 +1,6 @@
 import authorizationStyles from '@pages/authorization/style.module.css';
 import styles from './style.module.css';
+
 import { FC, useState } from 'react';
 
 interface PasswordInputProps {

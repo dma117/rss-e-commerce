@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '@/components/header';
+
 import AuthorizationLink from '@/pages/authorization/components/authorization-link';
 
 const AuthorizationLayout: FC = () => {

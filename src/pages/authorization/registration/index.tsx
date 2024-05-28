@@ -1,18 +1,23 @@
 import styles from '@pages/authorization/style.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { FC } from 'react';
-import useFormValidation from '../useFormValidation';
+import { ToastContainer } from 'react-toastify';
+
+import { MyCustomerDraft } from '@commercetools/platform-sdk';
+
+import { useApiRootContext } from '@contexts/useApiRootContext';
+import { useUserContext } from '@contexts/useUserContext';
+
+import { register } from '@utils/api/commercetools-api';
+import notify from '@utils/notify';
+
+import useFormValidation, { FormState } from '../useFormValidation';
 import { validationRules } from '../validationRules';
 import PasswordInput from '../components/password-input/';
-import { useApiRootContext } from '@/contexts/useApiRootContext';
-import { useUserContext } from '@/contexts/useUserContext';
-import { register } from '@/utils/api/commercetools-api';
-import { MyCustomerDraft } from '@commercetools/platform-sdk';
-import { ToastContainer } from 'react-toastify';
-import notify from '@/utils/notify';
 
 const RegistrationForm: FC = () => {
-  const initialState = {
+  const initialState: FormState = {
     email: '',
     password: '',
     firstName: '',
