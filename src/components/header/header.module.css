@@ -82,6 +82,13 @@
     transition: transform 0.3s linear;
   }
 
+  @media (height <= 330px) {
+    .header__nav {
+      justify-content: start;
+      overflow-y: scroll;
+    }
+  }
+
   .header__nav.active {
     transform: translateX(100%);
   }

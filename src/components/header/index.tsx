@@ -18,6 +18,10 @@ function Header({ theme }: HeaderProps) {
   const { setApiRoot } = useApiRootContext();
   const { isUserLoggedIn, setIsUserLoggedIn } = useUserContext();
 
+  function handleMenuButton() {
+    setOpen(!isOpen);
+  }
+
   function logoutUser() {
     const response = logout();
     if (response.success && response.apiBuilder) {
@@ -48,7 +52,7 @@ function Header({ theme }: HeaderProps) {
         </nav>
         <button
           className={cn(styles.header__menuButton, { [styles.open]: isOpen })}
-          onClick={() => setOpen(!isOpen)}
+          onClick={handleMenuButton}
         >
           <div className={styles.strip}></div>
         </button>
