@@ -10,10 +10,11 @@ import { useUserContext } from '@contexts/useUserContext';
 import { login } from '@utils/api/commercetools-api';
 import notify from '@utils/notify';
 
-import useFormValidation, { FormState } from '../useFormValidation';
-import PasswordInput from '../components/password-input';
-import { initialLoginData } from '../registration/config';
-import { getValidationRules } from '../validationRules';
+import useFormValidation, { FormState } from '@pages/authorization/useFormValidation';
+import PasswordInput from '@pages/authorization/components/password-input';
+import { initialLoginData, inputNames } from '@/pages/authorization/forms-config';
+import { getValidationRules } from '@pages/authorization/validationRules';
+import InputField from '@pages/authorization/components/input-field';
 
 const LoginForm: FC = () => {
   const initialState: FormState = initialLoginData;
@@ -42,21 +43,24 @@ const LoginForm: FC = () => {
 
   return (
     <form className={styles.formContainer}>
-      <div className={styles.fieldContainer}>
-        <label>Email:</label>
-        <input
-          className={styles.input}
-          type="text"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        {errors.email && <span className={styles.error}>{errors.email}</span>}
-      </div>
+      <InputField
+        labelTitle="Email"
+        name={inputNames.email}
+        type="text"
+        value={values[inputNames.email]}
+        onChange={handleChange}
+        error={errors[inputNames.email]}
+      />
       <div className={styles.fieldContainer}>
         <label>Password:</label>
-        <PasswordInput name="password" value={values.password} onChange={handleChange} />
-        {errors.password && <span className={styles.error}>{errors.password}</span>}
+        <PasswordInput
+          name={inputNames.password}
+          value={values[inputNames.password]}
+          onChange={handleChange}
+        />
+        {errors[inputNames.password] && (
+          <span className={styles.error}>{errors[inputNames.password]}</span>
+        )}
       </div>
       <button
         type="submit"

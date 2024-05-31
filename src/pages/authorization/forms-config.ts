@@ -17,8 +17,14 @@ export enum inputNames {
   billingAddress = 'billingAddress',
 }
 
+export const COUNTRY_OPTIONS = [
+  { value: 'US', labelTitle: 'United States' },
+  { value: 'DE', labelTitle: 'Germany' },
+  { value: 'NL', labelTitle: 'Netherlands' },
+  { value: 'RU', labelTitle: 'Russia' },
+];
 const DEFAULT_INPUT_VALUE = '';
-const DEFAULT_COUNTRY_CODE = 'US';
+const DEFAULT_COUNTRY_CODE = COUNTRY_OPTIONS[0].value;
 
 export const initialRegistrationData = Object.fromEntries(
   Object.values(inputNames).map((inputName) => {
