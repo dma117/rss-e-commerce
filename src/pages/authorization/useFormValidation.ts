@@ -3,7 +3,7 @@ import { useState } from 'react';
 export type FormState = Record<string, string>;
 type FormErrors = Record<string, string | undefined>;
 
-type ValidationFunction = (value: string, ...args: string[]) => string;
+type ValidationFunction = (value: string, ...argsForValidation: string[]) => string;
 
 const useFormValidation = (
   initialState: FormState,
@@ -14,51 +14,46 @@ const useFormValidation = (
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    ...args: string[]
+    ...argsForValidation: string[]
   ) => {
     const { name, value } = e.target;
 
+    changeValues(
+      {
+        [name]: value,
+      },
+      ...argsForValidation,
+    );
+  };
+
+  const changeValues = (
+    newValues: React.SetStateAction<FormState>,
+    ...argsForValidation: string[]
+  ) => {
     setValues({
       ...values,
-      [name]: value,
+      ...newValues,
     });
+    Object.entries(newValues).forEach(([name, newValue]) =>
+      validateValue(name, newValue, ...argsForValidation),
+    );
+  };
 
+  const validateValue = (name: string, newValue: string, ...argsForValidation: string[]) => {
     if (validate[name]) {
-      const error = validate[name](value, ...args);
+      const error = validate[name](newValue, ...argsForValidation);
       setErrors((prevErrors) => ({
         ...prevErrors,
         [name]: error || undefined,
       }));
     }
-
-    if (name === 'shippingCountry') {
-      changePostalCode('shippingPostalCode', value);
-    }
-
-    if (name === 'billingCountry') {
-      changePostalCode('billingPostalCode', value);
-    }
   };
-
-  const changePostalCode = (postalCodeName: string, value: string) => {
-    if (values[postalCodeName]) {
-      if (errors[postalCodeName] || values[postalCodeName] !== '') {
-        const error = validate[postalCodeName](values[postalCodeName], value);
-        setErrors({
-          ...errors,
-          [postalCodeName]: error || undefined,
-        });
-      }
-    }
-  };
-
-  const changeValues = (newValues: React.SetStateAction<FormState>) => setValues(newValues);
 
   const isFormValid = () =>
     Object.values(errors).length === Object.values(validate).length &&
     Object.values(errors).every((error) => error === undefined);
 
-  return { values, changeValues, errors, handleChange, isFormValid };
+  return { values, errors, handleChange, changeValues, validateValue, isFormValid };
 };
 
 export default useFormValidation;

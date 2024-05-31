@@ -20,10 +20,8 @@ import { initialRegistrationData, inputNames } from './config';
 const RegistrationForm: FC = () => {
   const initialState: FormState = initialRegistrationData;
 
-  const { values, changeValues, errors, handleChange, isFormValid } = useFormValidation(
-    initialState,
-    getValidationRules(Object.keys(initialState)),
-  );
+  const { values, errors, handleChange, changeValues, validateValue, isFormValid } =
+    useFormValidation(initialState, getValidationRules(Object.keys(initialState)));
   const { apiRoot, setApiRoot } = useApiRootContext();
   const { setIsUserLoggedIn } = useUserContext();
 
@@ -73,14 +71,25 @@ const RegistrationForm: FC = () => {
 
     if (isChecked) {
       const newValues = {
-        ...values,
         billingCountry: values.shippingCountry,
         billingPostalCode: values.shippingPostalCode,
         billingCity: values.shippingCity,
         billingStreet: values.shippingStreet,
       };
-      changeValues(newValues);
+      changeValues(newValues, values.shippingCountry);
     }
+  };
+
+  const changePostalCode = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    let postalCodeName = inputNames.shippingPostalCode;
+    if (name === inputNames.billingCountry) {
+      postalCodeName = inputNames.billingPostalCode;
+    }
+
+    changeValues({ [name]: value });
+    validateValue(postalCodeName, value);
   };
 
   return (
@@ -146,7 +155,7 @@ const RegistrationForm: FC = () => {
             id="shippingCountry"
             name="shippingCountry"
             value={values.shippingCountry}
-            onChange={handleChange}
+            onChange={changePostalCode}
           >
             <option value="US">United States</option>
             <option value="DE">Germany</option>
@@ -218,7 +227,7 @@ const RegistrationForm: FC = () => {
             id="billingCountry"
             name="billingCountry"
             value={values.billingCountry}
-            onChange={handleChange}
+            onChange={changePostalCode}
           >
             <option value="US">United States</option>
             <option value="DE">Germany</option>
