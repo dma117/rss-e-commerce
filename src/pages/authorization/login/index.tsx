@@ -11,14 +11,15 @@ import { login } from '@utils/api/commercetools-api';
 import notify from '@utils/notify';
 
 import useFormValidation, { FormState } from '../useFormValidation';
-import { validationRules } from '../validationRules';
 import PasswordInput from '../components/password-input';
+import { initialLoginData } from '../registration/config';
+import { getValidationRules } from '../validationRules';
 
 const LoginForm: FC = () => {
-  const initialState: FormState = { email: '', password: '' };
+  const initialState: FormState = initialLoginData;
   const { values, errors, handleChange, isFormValid } = useFormValidation(
     initialState,
-    validationRules,
+    getValidationRules(Object.keys(initialState)),
   );
 
   const { apiRoot, setApiRoot } = useApiRootContext();
@@ -59,7 +60,7 @@ const LoginForm: FC = () => {
       </div>
       <button
         type="submit"
-        disabled={isFormValid()}
+        disabled={!isFormValid()}
         className={styles.submitButton}
         onClick={loginUser}
       >

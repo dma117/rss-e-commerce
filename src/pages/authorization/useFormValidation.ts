@@ -32,15 +32,15 @@ const useFormValidation = (
     }
 
     if (name === 'shippingCountry') {
-      validatePostalCode('shippingPostalCode', value);
+      changePostalCode('shippingPostalCode', value);
     }
 
     if (name === 'billingCountry') {
-      validatePostalCode('billingPostalCode', value);
+      changePostalCode('billingPostalCode', value);
     }
   };
 
-  const validatePostalCode = (postalCodeName: string, value: string) => {
+  const changePostalCode = (postalCodeName: string, value: string) => {
     if (values[postalCodeName]) {
       if (errors[postalCodeName] || values[postalCodeName] !== '') {
         const error = validate[postalCodeName](values[postalCodeName], value);
@@ -52,11 +52,13 @@ const useFormValidation = (
     }
   };
 
-  const isFormValid = () =>
-    Object.values(errors).some((error) => error !== undefined) ||
-    Object.keys(values).some((key) => !key.includes('country') && values[key] === '');
+  const changeValues = (newValues: React.SetStateAction<FormState>) => setValues(newValues);
 
-  return { values, errors, handleChange, isFormValid };
+  const isFormValid = () =>
+    Object.values(errors).length === Object.values(validate).length &&
+    Object.values(errors).every((error) => error === undefined);
+
+  return { values, changeValues, errors, handleChange, isFormValid };
 };
 
 export default useFormValidation;

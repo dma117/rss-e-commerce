@@ -1,7 +1,7 @@
 import styles from '@pages/authorization/style.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { MyCustomerDraft } from '@commercetools/platform-sdk';
@@ -13,34 +13,21 @@ import { register } from '@utils/api/commercetools-api';
 import notify from '@utils/notify';
 
 import useFormValidation, { FormState } from '../useFormValidation';
-import { validationRules } from '../validationRules';
+import { getValidationRules } from '../validationRules';
 import PasswordInput from '../components/password-input/';
+import { initialRegistrationData, inputNames } from './config';
 
 const RegistrationForm: FC = () => {
-  const initialState: FormState = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    shippingStreet: '',
-    shippingCity: '',
-    shippingPostalCode: '',
-    shippingCountry: 'US',
-    billingStreet: '',
-    billingCity: '',
-    billingPostalCode: '',
-    billingCountry: 'US',
-  };
+  const initialState: FormState = initialRegistrationData;
 
-  const { values, errors, handleChange, isFormValid } = useFormValidation(
+  const { values, changeValues, errors, handleChange, isFormValid } = useFormValidation(
     initialState,
-    validationRules,
+    getValidationRules(Object.keys(initialState)),
   );
   const { apiRoot, setApiRoot } = useApiRootContext();
   const { setIsUserLoggedIn } = useUserContext();
 
-  async function registerUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function registerUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { email, password, firstName, lastName, dateOfBirth, country, city, street, postalCode } =
       values;
@@ -60,6 +47,15 @@ const RegistrationForm: FC = () => {
       ],
     };
 
+    const form = e.target;
+    if (form instanceof HTMLFormElement) {
+      const defaultShippingInput = form.elements[inputNames.defaultShipping];
+
+      if (defaultShippingInput instanceof HTMLInputElement) {
+        console.log(defaultShippingInput.checked);
+      }
+    }
+
     if (apiRoot) {
       const response = await register(apiRoot, customerDraft);
 
@@ -72,18 +68,35 @@ const RegistrationForm: FC = () => {
     }
   }
 
+  const setBillingAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      const newValues = {
+        ...values,
+        billingCountry: values.shippingCountry,
+        billingPostalCode: values.shippingPostalCode,
+        billingCity: values.shippingCity,
+        billingStreet: values.shippingStreet,
+      };
+      changeValues(newValues);
+    }
+  };
+
   return (
-    <form className={styles.formContainer}>
+    <form className={styles.formContainer} onSubmit={registerUser}>
       <div className={styles.fieldContainer}>
         <label>Email:</label>
         <input
           className={styles.input}
           type="text"
-          name="email"
-          value={values.email}
+          name={inputNames.email}
+          value={values[inputNames.email]}
           onChange={handleChange}
         />
-        {errors.email && <span className={styles.error}>{errors.email}</span>}
+        {errors[inputNames.email] && (
+          <span className={styles.error}>{errors[inputNames.email]}</span>
+        )}
       </div>
       <div className={styles.fieldContainer}>
         <label>Password:</label>
@@ -177,6 +190,23 @@ const RegistrationForm: FC = () => {
           />
           {errors.shippingStreet && <span className={styles.error}>{errors.shippingStreet}</span>}
         </div>
+        <div>
+          <input
+            type="checkbox"
+            id={inputNames.billingAddress}
+            name={inputNames.billingAddress}
+            onChange={setBillingAddress}
+          />
+          <label htmlFor={inputNames.billingAddress}>Set as billing address</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id={inputNames.defaultShipping}
+            name={inputNames.defaultShipping}
+          />
+          <label htmlFor={inputNames.defaultShipping}>Set as default address</label>
+        </div>
       </fieldset>
 
       <fieldset>
@@ -232,13 +262,17 @@ const RegistrationForm: FC = () => {
           />
           {errors.billingStreet && <span className={styles.error}>{errors.billingStreet}</span>}
         </div>
+        <div>
+          <input type="checkbox" id={inputNames.defaultBilling} name={inputNames.defaultBilling} />
+          <label htmlFor={inputNames.defaultBilling}>Set as default address</label>
+        </div>
       </fieldset>
 
       <button
         type="submit"
-        disabled={isFormValid()}
+        disabled={!isFormValid()}
         className={styles.submitButton}
-        onClick={registerUser}
+        // onClick={registerUser}
       >
         Signup
       </button>
