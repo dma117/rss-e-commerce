@@ -15,7 +15,6 @@ dist-ssr
 # Local environment files
 *.local
 .env
-coverage/
 
 # Editor directories and files
 .vscode/*
@@ -27,3 +26,6 @@ coverage/
 *.njsproj
 *.sln
 *.sw?
+
+# Coverage reports
+coverage/
