@@ -20,6 +20,7 @@ function Header({ theme }: HeaderProps) {
 
   function handleMenuButton() {
     setOpen(!isOpen);
+    document.body.classList.toggle('lock');
   }
 
   function logoutUser() {
@@ -31,7 +32,12 @@ function Header({ theme }: HeaderProps) {
   }
 
   const currentUserNavItems = isUserLoggedIn
-    ? [...userNavItems.default, ...userNavItems.loggedIn.map(item => item.title === 'Logout' ? { ...item, clickHandler: logoutUser } : item)]
+    ? [
+        ...userNavItems.default,
+        ...userNavItems.loggedIn.map((item) =>
+          item.title === 'Logout' ? { ...item, clickHandler: logoutUser } : item,
+        ),
+      ]
     : [...userNavItems.default, ...userNavItems.notLoggedIn];
 
   return (
@@ -39,16 +45,18 @@ function Header({ theme }: HeaderProps) {
       <div className={`container ${styles.header__container}`}>
         <Logo theme={theme} />
         <nav className={cn(styles.header__nav, { [styles.active]: isOpen })}>
-          <NavList
-            theme='dark'
-            nav='site'
-            items={siteNavItems}
-          />
-          <NavList
-            theme='dark'
-            nav='user'
-            items={currentUserNavItems}
-          />
+          <div className={styles.header__navContainer}>
+            <NavList 
+              theme='dark' 
+              nav='site' 
+              items={siteNavItems} 
+            />
+            <NavList 
+              theme='dark' 
+              nav='user' 
+              items={currentUserNavItems} 
+            />
+          </div>
         </nav>
         <button
           className={cn(styles.header__menuButton, { [styles.open]: isOpen })}
