@@ -2,7 +2,7 @@ import styles from '@pages/authorization/style.module.css';
 
 import { FC, HTMLInputTypeAttribute } from 'react';
 
-export interface TextFieldProps {
+interface TextFieldProps {
   labelTitle: string;
   name: string;
   type: HTMLInputTypeAttribute;
