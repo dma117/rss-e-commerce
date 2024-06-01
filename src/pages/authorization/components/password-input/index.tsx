@@ -11,6 +11,7 @@ interface PasswordInputProps {
   title?: string;
   id?: string;
   placeholder?: string;
+  autoComplete?: string;
 }
 
 const PasswordInput: FC<PasswordInputProps> = ({
@@ -21,6 +22,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
   title,
   id,
   placeholder,
+  autoComplete = 'current-password',
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -34,6 +36,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
         title={title}
         id={id}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         className={authorizationStyles.input}
       />
       <button

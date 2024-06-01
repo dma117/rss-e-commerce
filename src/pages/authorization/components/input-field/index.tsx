@@ -9,6 +9,7 @@ interface TextFieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
+  autoComplete?: string;
 }
 
 const InputField: FC<TextFieldProps> = ({
@@ -18,10 +19,18 @@ const InputField: FC<TextFieldProps> = ({
   value,
   onChange,
   error,
+  autoComplete = 'username',
 }) => (
   <div className={styles.fieldContainer}>
     <label>{label}</label>
-    <input className={styles.input} type={type} name={name} value={value} onChange={onChange} />
+    <input
+      className={styles.input}
+      type={type}
+      name={name}
+      value={value}
+      autoComplete={autoComplete}
+      onChange={onChange}
+    />
     {error && <span className={styles.error}>{error}</span>}
   </div>
 );

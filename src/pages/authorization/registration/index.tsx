@@ -107,6 +107,7 @@ const RegistrationForm: FC = () => {
         value={values[inputNames.email]}
         onChange={handleChange}
         error={errors[inputNames.email]}
+        autoComplete={`user-${inputNames.email}`}
       />
       <div className={styles.fieldContainer}>
         <label>Password:</label>
@@ -126,6 +127,7 @@ const RegistrationForm: FC = () => {
         value={values[inputNames.firstName]}
         onChange={handleChange}
         error={errors[inputNames.firstName]}
+        autoComplete={`user-${inputNames.firstName}`}
       />
       <InputField
         labelTitle="Last Name"
@@ -134,6 +136,7 @@ const RegistrationForm: FC = () => {
         value={values[inputNames.lastName]}
         onChange={handleChange}
         error={errors[inputNames.lastName]}
+        autoComplete={`user-${inputNames.lastName}`}
       />
       <InputField
         labelTitle="Date of Birth"
@@ -142,6 +145,7 @@ const RegistrationForm: FC = () => {
         value={values[inputNames.dateOfBirth]}
         onChange={handleChange}
         error={errors[inputNames.dateOfBirth]}
+        autoComplete={`user-${inputNames.dateOfBirth}`}
       />
 
       <fieldset>
