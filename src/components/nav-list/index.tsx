@@ -30,7 +30,7 @@ function NavList({ theme, nav, items }: NavListProps) {
                   className={cn(styles.logoutButton, styles.userNav__link)}
                   onClick={item.clickHandler}
                 >
-                  <i className={cn(styles.icon, styles.logoutIcon)}></i>
+                  <i className={cn(styles.icon, item.icon)}></i>
                   Logout
                 </button>
                 : item.route && <NavLink

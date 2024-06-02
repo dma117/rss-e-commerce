@@ -29,7 +29,7 @@ export const userNavItems = {
     },
     {
       title: 'Logout',
-      icon: styles.basketIcon,
+      icon: styles.logoutIcon,
     },
   ],
   notLoggedIn: [
