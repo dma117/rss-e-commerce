@@ -113,7 +113,6 @@ export async function getUserInfo(apiRoot: ByProjectKeyRequestBuilder) {
   try {
     const response = await apiRoot.me().get().execute();
     if (response.statusCode === 200) {
-      console.log(response.body);
       return response.body;
     } else {
       console.log('Failed to fetch user profile:', response);
