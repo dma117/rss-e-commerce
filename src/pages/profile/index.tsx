@@ -34,19 +34,19 @@ const Profile: FC = () => {
         <h2 className={styles.title}>Personal Information</h2>
         <div className={styles.dataBlock}>
           <div className={styles.data}>
-            <span className={styles.label}>Email</span>
+            <span className={styles.label}>Email:</span>
             <span className={styles.dataItem}>{userInfo?.email}</span>
           </div>
           <div className={styles.data}>
-            <span className={styles.label}>First Name</span>
+            <span className={styles.label}>First Name:</span>
             <span className={styles.dataItem}>{userInfo?.firstName}</span>
           </div>
           <div className={styles.data}>
-            <span className={styles.label}>Last Name</span>
+            <span className={styles.label}>Last Name:</span>
             <span className={styles.dataItem}>{userInfo?.lastName}</span>
           </div>
           <div className={styles.data}>
-            <span className={styles.label}>Date of birth</span>
+            <span className={styles.label}>Date of birth:</span>
             <span className={styles.dataItem}>{userInfo?.dateOfBirth}</span>
           </div>
         </div>
@@ -66,13 +66,13 @@ const Profile: FC = () => {
             ))}
           </ul>
           <div className={styles.data}>
-            <span className={styles.label}>Default shipping address</span>
+            <span className={styles.label}>Default shipping address:</span>
             <span className={styles.dataItem}>
               {getAddress(foundAddress(userInfo?.defaultShippingAddressId))}
             </span>
           </div>
           <div className={styles.data}>
-            <span className={styles.label}>Default billing address</span>
+            <span className={styles.label}>Default billing address:</span>
             <span className={styles.dataItem}>
               {getAddress(foundAddress(userInfo?.defaultBillingAddressId))}
             </span>

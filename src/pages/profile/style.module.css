@@ -25,10 +25,26 @@
 }
 
 .data,
+.addressList {
+  position: relative;
+}
+
+.data,
 .formField {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.addressList::after,
+.data::after {
+  content: '';
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(115, 115, 141, 0.3);
 }
 
 .data:not(:last-child) {
@@ -73,7 +89,15 @@
 }
 
 .dataItem {
-  flex: 0 1 50%;
+  display: block;
+  flex: 0 0 50%;
+  padding-left: 7px;
+}
+
+@media (width <= 600px) {
+  .dataItem {
+    flex: 0 0 70%;
+  }
 }
 
 .buttonsBlock {
