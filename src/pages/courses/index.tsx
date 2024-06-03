@@ -1,4 +1,4 @@
-import CatalogCard from '@components/catalogCard';
+import CatalogCard from '@/components/catalog-card';
 import { Routes } from "@/utils/const";
 import styles from './style.module.css';
 import imgProgramming from '@/assets/programming.png';
