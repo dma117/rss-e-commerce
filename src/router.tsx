@@ -11,7 +11,8 @@ import NotFound from './pages/not-found';
 import AuthorizationLayout from '@pages/authorization';
 import ProtectedRoute from './components/protectedRoute';
 import PublicRoute from './components/publicRoute';
-import { Routes } from './utils/const';
+import { CategoryId, Routes } from './utils/const';
+import ProductList from './components/product-list';
 
 export const router = createBrowserRouter([
   {
@@ -72,5 +73,13 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: Routes.PROGRAMMING,
+    element: (
+      <ProductList
+        categoryId={CategoryId.PROGRAMMING}
+      />
+    ),
   },
 ]);
