@@ -1,9 +1,6 @@
 import { useApiRootContext } from '@/contexts/useApiRootContext';
 import { Product } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
-// import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import styles from './style.module.css';
 
 type ProductListProps = {
   categoryId: string;
@@ -44,6 +41,7 @@ function ProductList({ categoryId }: ProductListProps) {
         return (
           <div key={product.id}>
             <img
+              width='700'
               src={
                 product.masterData.current.masterVariant.assets &&
                 product.masterData.current.masterVariant.assets[0].sources[0].uri
