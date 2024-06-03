@@ -6,9 +6,8 @@ import { useEffect, useState } from 'react';
 // import styles from './style.module.css';
 
 type ProductListProps = {
-  categoryId: string,
-}
-
+  categoryId: string;
+};
 
 function ProductList({ categoryId }: ProductListProps) {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,47 +16,49 @@ function ProductList({ categoryId }: ProductListProps) {
   const { apiRoot } = useApiRootContext();
 
   useEffect(() => {
-    apiRoot && apiRoot
-      .products()
-      .get(
-        {
+    apiRoot &&
+      apiRoot
+        .products()
+        .get({
           queryArgs: {
             limit: 30,
-            where: `masterData(current(categories(id="${categoryId}")))`
+            where: `masterData(current(categories(id="${categoryId}")))`,
+          },
+        })
+        .execute()
+        .then((response) => {
+          console.log(response.body.results);
+          const products = response.body.results;
+          if (products) {
+            setProducts(products);
           }
-        }
-      )
-      .execute()
-      .then(response => {
-        console.log(response.body.results);
-        const products = response.body.results;
-        if (products) {
-          setProducts(products);
-        }
-      })
-      .catch(error => {
-        setError(error)
-      });
+        })
+        .catch((error) => {
+          setError(error);
+        });
   }, [apiRoot, categoryId]);
-
 
   return (
     <div>
-      {products.map(product => {
-
+      {products.map((product) => {
         return (
           <div key={product.id}>
-          <img src={product.masterData.current.masterVariant.assets && product.masterData.current.masterVariant.assets[0].sources[0].uri} alt="" />
-          <div >
-            {product.masterData.current.name['en-GB']}
+            <img
+              src={
+                product.masterData.current.masterVariant.assets &&
+                product.masterData.current.masterVariant.assets[0].sources[0].uri
+              }
+              alt=""
+            />
+            <div>{product.masterData.current.name['en-GB']}</div>
+            <div>
+              {product.masterData.current.description &&
+                product.masterData.current.description['en-GB']}
+            </div>
           </div>
-          <div>
-            {product.masterData.current.description && product.masterData.current.description['en-GB']}
-          </div>
-          </div>
-        )
+        );
       })}
-      {error && error}  
+      {error && error}
     </div>
   );
 }

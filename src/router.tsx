@@ -76,10 +76,6 @@ export const router = createBrowserRouter([
   },
   {
     path: Routes.PROGRAMMING,
-    element: (
-      <ProductList
-        categoryId={CategoryId.PROGRAMMING}
-      />
-    ),
+    element: <ProductList categoryId={CategoryId.PROGRAMMING} />,
   },
 ]);
