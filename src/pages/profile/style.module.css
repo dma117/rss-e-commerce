@@ -1,0 +1,132 @@
+.profileContainer {
+  padding: 15px 5px;
+}
+
+.infoBlock {
+  position: relative;
+}
+
+.infoBlock:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.infoBlock::after {
+  content: '';
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--dark-bg);
+}
+
+.title {
+  color: var(--dark-blue-text);
+}
+
+.data,
+.formField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.dataBlock,
+.dataForm {
+  margin: 0 auto 20px;
+  max-width: 600px;
+}
+
+.addressList {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-left: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dropdownContainer {
+  display: flex;
+}
+
+.personalDataForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  color: var(--dark-blue-text);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.dataItem {
+  flex: 0 1 50%;
+}
+
+.buttonsBlock {
+  margin-top: 20px;
+  display: flex;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 0;
+  width: 180px;
+  color: var(--light-text);
+  background-color: var(--orange-bg);
+  border-radius: 6px;
+  transition: all 0.5s;
+  border-color: transparent;
+  outline: none;
+}
+
+.btnGray {
+  background-color: gray;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.input {
+  padding: 0.5rem;
+
+  /* width: 100%; */
+  color: var(--dark-gray-text);
+  background-color: var(--dark-gray-bg);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all 0.5s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+  background: #ffb800;
+}
+
+.btn:not(:disabled):active {
+  background: #d99d00;
+}
+
+.btnGray .btn:not(:disabled):hover {
+  background: #ffb800;
+}
