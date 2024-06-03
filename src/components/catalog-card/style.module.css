@@ -22,3 +22,10 @@
     font-size: 1.5rem;
   }
 }
+
+@media (pointer: fine) {
+  .card:hover{
+    scale: 1.05;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
