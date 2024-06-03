@@ -44,7 +44,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: rgba(115, 115, 141, 0.3);
+  background-color: rgb(115 115 141 / 30%);
 }
 
 .data:not(:last-child) {
@@ -92,12 +92,6 @@
   display: block;
   flex: 0 0 50%;
   padding-left: 7px;
-}
-
-@media (width <= 600px) {
-  .dataItem {
-    flex: 0 0 70%;
-  }
 }
 
 .buttonsBlock {
@@ -153,4 +147,16 @@
 
 .btnGray .btn:not(:disabled):hover {
   background: #ffb800;
+}
+
+@media (width <= 600px) {
+  .data {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .dataItem {
+    flex: 0 0 70%;
+  }
 }
