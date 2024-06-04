@@ -7,7 +7,6 @@
 
 .button {
   padding: 3px;
-  border: none;
   background-color: transparent;
   font-weight: bold;
   color: var(--accent-color);
@@ -15,11 +14,11 @@
   border-radius: 5px;
 }
 
-.buttonAsc::after{
+.buttonAsc::after {
   content: '⮝';
 }
 
-.buttonDesc::before{
+.buttonDesc::before {
   content: '⮟';
 }
 

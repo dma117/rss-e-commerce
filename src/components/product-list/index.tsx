@@ -8,10 +8,10 @@ import Sorting from '../sorting';
 
 type ProductListProps = {
   categoryId:
-  | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
-  | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
-  | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
-  | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
+    | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
+    | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
+    | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
+    | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
 };
 
 function ProductList({ categoryId }: ProductListProps) {
@@ -30,7 +30,7 @@ function ProductList({ categoryId }: ProductListProps) {
           queryArgs: {
             limit: 30,
             filter: [`categories.id:"${categoryId}"`],
-            ...query
+            ...query,
           },
         })
         .execute()
@@ -50,24 +50,18 @@ function ProductList({ categoryId }: ProductListProps) {
     <div className={styles.catalog}>
       <div className={styles.catalogHeader}>
         <Breadcrumbs categoryId={categoryId} />
-        <Sorting
-          setSort={setQuery}
-        />
+        <Sorting setSort={setQuery} />
       </div>
       <div className={styles.productList}>
         {products &&
           products.map((product) => {
             const id = product.id;
             const imgSrc =
-              product.masterVariant.assets &&
-              product.masterVariant.assets[0].sources[0].uri;
+              product.masterVariant.assets && product.masterVariant.assets[0].sources[0].uri;
             const title = product.name['en-GB'];
-            const description =
-              product.description &&
-              product.description['en-GB'];
+            const description = product.description && product.description['en-GB'];
             const price =
-              ((product.masterVariant.prices &&
-                product.masterVariant.prices[0].value.centAmount) ||
+              ((product.masterVariant.prices && product.masterVariant.prices[0].value.centAmount) ||
                 0) / 100;
             const finalPrice =
               ((product.masterVariant.prices &&
