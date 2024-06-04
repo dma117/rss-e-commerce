@@ -10,10 +10,10 @@ interface TextFieldProps {
   type: HTMLInputTypeAttribute;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  styles: Styles;
   error?: string;
   autoComplete?: string;
-  styles: Styles;
-  useWrapper?: boolean;
+  isDisabled?: boolean;
 }
 
 const InputField: FC<TextFieldProps> = ({
@@ -25,41 +25,23 @@ const InputField: FC<TextFieldProps> = ({
   error,
   autoComplete = 'username',
   styles,
-  useWrapper,
+  isDisabled,
 }) => {
-  if (useWrapper) {
-    return (
-      <div className={styles.fieldContainer}>
-        <div className={styles.wrapper}>
-          <label className={styles.label}>{label}</label>
-          <input
-            className={styles.input}
-            type={type}
-            name={name}
-            value={value}
-            autoComplete={autoComplete}
-            onChange={onChange}
-          />
-        </div>
-        {error && <span className={styles.error}>{error}</span>}
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.fieldContainer}>
-        <label>{label}</label>
-        <input
-          className={styles.input}
-          type={type}
-          name={name}
-          value={value}
-          autoComplete={autoComplete}
-          onChange={onChange}
-        />
-        {error && <span className={styles.error}>{error}</span>}
-      </div>
-    );
-  }
+  return (
+    <div className={styles.fieldContainer}>
+      <label>{label}</label>
+      <input
+        className={styles.input}
+        type={type}
+        name={name}
+        value={value}
+        autoComplete={autoComplete}
+        onChange={onChange}
+        disabled={isDisabled}
+      />
+      {error && <span className={styles.error}>{error}</span>}
+    </div>
+  );
 };
 
 export default InputField;

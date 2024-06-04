@@ -7,8 +7,8 @@ interface SelectFieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options: { value: string; labelTitle: string }[];
-  error?: string;
   styles: Styles;
+  error?: string;
 }
 
 const SelectField: FC<SelectFieldProps> = ({
