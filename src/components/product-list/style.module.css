@@ -14,3 +14,9 @@
 .productList img {
   width: 100%;
 }
+
+.catalogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

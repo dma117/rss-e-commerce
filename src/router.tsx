@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: Routes.COURSES,
+        path: Routes.CATALOG,
         element: <Courses />,
       },
       {
@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Routes.COURSES,
+    path: Routes.CATALOG,
     element: <Layout />,
     children: [
       {
@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Routes.COURSES,
+    path: Routes.CATALOG,
     element: <Layout />,
     children: [
       {
@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Routes.COURSES,
+    path: Routes.CATALOG,
     element: <Layout />,
     children: [
       {
@@ -105,7 +105,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Routes.COURSES,
+    path: Routes.CATALOG,
     element: <Layout />,
     children: [
       {
