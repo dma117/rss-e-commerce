@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+  transition: all 0.5s;
+  box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
+
 }
 
 .productCard img {
@@ -16,4 +19,10 @@
 
 .price {
   font-weight: bold;
+}
+
+@media (pointer: fine) {
+  .productCard:hover {
+    scale: 1.05;
+  }
 }
