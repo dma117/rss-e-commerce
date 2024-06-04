@@ -1,42 +1,69 @@
 .profileContainer {
   padding: 15px 5px;
+  display: flex;
+  gap: 10px;
 }
 
-.infoBlock {
-  position: relative;
+.navBlock,
+.contentBlock {
+  border: 2px solid var(--dark-bg);
+  padding: 15px;
+  border-radius: 20px;
 }
 
-.infoBlock:not(:last-child) {
-  margin-bottom: 30px;
+.contentBlock {
+  flex: 1 0 auto;
+  padding: 50px;
 }
 
-.infoBlock::after {
-  content: '';
-  position: absolute;
-  top: 105%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--dark-bg);
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.title {
+.navItem {
+  font-size: 1.3rem;
   color: var(--dark-blue-text);
+  background-color: transparent;
+  transition: all 0.3s;
+  border-color: transparent;
+  outline: none;
+  text-align: start;
 }
 
-.data,
-.addressList {
+.navItem.active {
+  color: var(--accent-color);
+  text-shadow: 0 0 2px var(--accent-color);
+}
+
+.dataBlock {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.data {
   position: relative;
-}
-
-.data,
-.formField {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.addressList::after,
+.data:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.label {
+  color: var(--dark-blue-text);
+  font-weight: 600;
+}
+
+.dataItem {
+  display: block;
+  flex: 0 0 50%;
+  padding-left: 7px;
+}
+
 .data::after {
   content: '';
   position: absolute;
@@ -47,61 +74,9 @@
   background-color: rgb(115 115 141 / 30%);
 }
 
-.data:not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.dataBlock,
-.dataForm {
-  margin: 0 auto 20px;
-  max-width: 600px;
-}
-
-.addressList {
-  margin-top: 5px;
-  margin-bottom: 15px;
-  padding-left: 17px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.dropdownContainer {
-  display: flex;
-}
-
-.personalDataForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.label {
-  color: var(--dark-blue-text);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.dataItem {
-  display: block;
-  flex: 0 0 50%;
-  padding-left: 7px;
-}
-
-.buttonsBlock {
-  margin-top: 20px;
-  display: flex;
-}
-
 .btn {
   display: block;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   padding: 12px 0;
   width: 180px;
   color: var(--light-text);
@@ -112,19 +87,47 @@
   outline: none;
 }
 
-.btnGray {
-  background-color: gray;
+.address {
+  border: 2px solid var(--dark-bg);
+  padding: 20px;
+  border-radius: 20px;
 }
 
-.error {
-  color: red;
-  font-size: 0.875rem;
+.countriesSelect {
+  pointer-events: none;
+}
+
+.address:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.fieldContainer {
+  margin-bottom: 8px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.addressButton {
+  margin-top: 5px;
+  padding: 7px 0;
+  flex: 1 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 .input {
   padding: 0.5rem;
-
-  /* width: 100%; */
+  width: 100%;
   color: var(--dark-gray-text);
   background-color: var(--dark-gray-bg);
   border: 1px solid transparent;
@@ -132,28 +135,117 @@
   transition: all 0.5s;
 }
 
-.btn:disabled {
+.input::placeholder {
+  color: var(--dark-bg-text);
+}
+
+.passwordContainer {
+  display: flex;
+  gap: 3%;
+}
+
+.countriesSelect {
+  margin-left: 2%;
+}
+
+.checkboxContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.checkboxInput,
+.checkboxLabel {
+  pointer-events: none;
+}
+
+.checkboxLabel {
+  padding-left: 5px;
+}
+.submitButton {
+  padding: 12px 32px;
+  margin: 0;
+  color: var(--light-text);
+  background-color: var(--orange-bg);
+  border-radius: 6px;
+  transition: all 0.5s;
+  border-color: transparent;
+  outline: none;
+}
+
+.submitButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.btn:not(:disabled):hover {
+.submitButton:not(:disabled):hover {
   background: #ffb800;
 }
 
-.btn:not(:disabled):active {
+.submitButton:not(:disabled):active {
   background: #d99d00;
 }
 
-.btnGray .btn:not(:disabled):hover {
-  background: #ffb800;
+.input {
+  pointer-events: none;
 }
 
+@media (pointer: fine) {
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn:not(:disabled):hover {
+    background: #ffb800;
+  }
+
+  .btn:not(:disabled):active {
+    background: #d99d00;
+  }
+  .navItem:hover {
+    color: var(--accent-color);
+  }
+
+  .navItem:active {
+    text-shadow: 0 0 2px rgb(51, 51, 59);
+  }
+}
+
+@media (width <= 800px) {
+  .profileContainer {
+    padding: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .contentBlock {
+    padding: 20px;
+  }
+}
 @media (width <= 600px) {
+  .contentBlock,
+  .address {
+    padding: 7px;
+  }
+
+  .addressButton {
+  }
+
   .data {
     flex-direction: column;
     gap: 5px;
     text-align: center;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
   }
 
   .dataItem {
