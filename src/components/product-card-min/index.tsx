@@ -8,27 +8,26 @@ type ProductCardMinProps = {
   title: string;
   description: string;
   price: number;
-  finalPrice: number,
+  finalPrice: number;
 };
 
-function ProductCardMin({ id, imgSrc, title, description, price, finalPrice }: ProductCardMinProps) {
+function ProductCardMin({
+  id,
+  imgSrc,
+  title,
+  description,
+  price,
+  finalPrice,
+}: ProductCardMinProps) {
   return (
     <Link className={styles.productCard} to={`./${id}`}>
-      {!!finalPrice &&
-        <span className={styles.discount}>%</span>
-      }
+      {!!finalPrice && <span className={styles.discount}>%</span>}
       <img src={imgSrc} alt="" />
       <div className={styles.title}>{title}</div>
       <div>{description}</div>
       <div className={styles.price}>
-        {!!finalPrice &&
-          <span className={styles.finalPrice}>
-            {`${finalPrice.toFixed(2)}$`}
-          </span>
-        }
-        <span className={cn({ [styles['oldPrice']]: finalPrice })}>
-          {`${price}$`}
-        </span>
+        {!!finalPrice && <span className={styles.finalPrice}>{`${finalPrice.toFixed(2)}$`}</span>}
+        <span className={cn({ [styles['oldPrice']]: finalPrice })}>{`${price}$`}</span>
       </div>
     </Link>
   );
