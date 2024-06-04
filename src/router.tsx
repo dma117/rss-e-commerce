@@ -75,19 +75,43 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Routes.PROGRAMMING,
-    element: <ProductList categoryId={CategoryId.PROGRAMMING} />,
+    path: Routes.COURSES,
+    element: <Layout />,
+    children: [
+      {
+        path: Routes.PROGRAMMING,
+        element: <ProductList categoryId={CategoryId.PROGRAMMING} />,
+      }
+    ]
   },
   {
-    path: Routes.DESIGN,
-    element: <ProductList categoryId={CategoryId.DESIGN} />,
+    path: Routes.COURSES,
+    element: <Layout />,
+    children: [
+      {
+        path: Routes.DESIGN,
+        element: <ProductList categoryId={CategoryId.DESIGN} />,
+      }
+    ]
   },
   {
-    path: Routes.MARKETING,
-    element: <ProductList categoryId={CategoryId.MARKETING} />,
+    path: Routes.COURSES,
+    element: <Layout />,
+    children: [
+      {
+        path: Routes.MARKETING,
+        element: <ProductList categoryId={CategoryId.MARKETING} />,
+      }
+    ]
   },
   {
-    path: Routes.BUSINESS,
-    element: <ProductList categoryId={CategoryId.BUSINESS} />,
+    path: Routes.COURSES,
+    element: <Layout />,
+    children: [
+      {
+        path: Routes.BUSINESS,
+        element: <ProductList categoryId={CategoryId.BUSINESS} />,
+      }
+    ]
   },
 ]);

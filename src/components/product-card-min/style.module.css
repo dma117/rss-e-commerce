@@ -1,0 +1,19 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.productCard img {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+}
