@@ -1,50 +1,45 @@
-import { FC } from 'react';
+import { useApiRootContext } from '@/contexts/useApiRootContext';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-}
+import { ProductData, mapProductProjectionToProduct } from './config';
 
 const ProductDetail: FC = () => {
-  const { category, productId } = useParams<{ category: string; productId: string }>();
+  const [product, setProduct] = useState<ProductData | null>(null);
 
-  const product = getProductById(category, productId);
+  const { apiRoot } = useApiRootContext();
+  const { productId } = useParams<{ category: string; productId: string }>();
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
+  useEffect(() => {
+    apiRoot &&
+      apiRoot
+        .products()
+        .withId({ ID: productId || '' })
+        .get()
+        .execute()
+        .then((response) => {
+          console.log('Product retrieved:', response.body);
+          const productProjection = response.body;
+          const product = mapProductProjectionToProduct(productProjection);
+          console.log('Mapped product:', product);
+          setProduct(product);
+        })
+        .catch((error) => {
+          console.error('Error retrieving product:', error);
+        });
+  }, [apiRoot, productId]);
 
   return (
     <div>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <p>Price: {product.price}</p>
+      {!product && 'Sorry, the product with your id is not found.'}
+      {product && (
+        <>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <img src={product.assets[0]} alt="" />
+        </>
+      )}
     </div>
   );
 };
 
 export default ProductDetail;
-
-const getProductById = (
-  category: string | undefined,
-  productId: string | undefined,
-): Product | null => {
-  const products: { [key: string]: Product[] } = {
-    programming: [
-      { id: '1', name: 'JavaScript Basics', description: 'Learn JavaScript', price: '$20' },
-    ],
-    design: [
-      { id: '2', name: 'Photoshop Essentials', description: 'Learn Photoshop', price: '$25' },
-    ],
-    marketing: [{ id: '3', name: 'Marketing 101', description: 'Learn Marketing', price: '$30' }],
-    business: [{ id: '4', name: 'Business Basics', description: 'Learn Business', price: '$35' }],
-  };
-
-  const categoryProducts = products[category || ''];
-  if (!categoryProducts) return null;
-
-  return categoryProducts.find((product) => product.id === productId) || null;
-};
