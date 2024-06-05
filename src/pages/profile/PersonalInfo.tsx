@@ -1,11 +1,14 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './style.module.css';
+import PersonalDataForm from './PersonalDataForm';
+import { Customer } from '@commercetools/platform-sdk';
 
 interface PersonalInfoProps {
   email: string | undefined;
   firstName: string | undefined;
   lastName: string | undefined;
   dateOfBirth: string | undefined;
+  setUserInfo: React.Dispatch<React.SetStateAction<Customer | null>>;
 }
 
 const PersonalInfo: FC<PersonalInfoProps> = ({
@@ -13,8 +16,19 @@ const PersonalInfo: FC<PersonalInfoProps> = ({
   firstName = '',
   lastName = '',
   dateOfBirth = '',
+  setUserInfo,
 }) => {
-  return (
+  const [isEdit, setIsEdit] = useState(false);
+  return isEdit ? (
+    <PersonalDataForm
+      email={email}
+      firstName={firstName}
+      lastName={lastName}
+      dateOfBirth={dateOfBirth}
+      setIsEdit={setIsEdit}
+      setUserInfo={setUserInfo}
+    />
+  ) : (
     <div className={styles.dataBlock}>
       <div className={styles.data}>
         <span className={styles.label}>Email:</span>
@@ -32,7 +46,12 @@ const PersonalInfo: FC<PersonalInfoProps> = ({
         <span className={styles.label}>Date of birth:</span>
         <span className={styles.dataItem}>{dateOfBirth}</span>
       </div>
-      <button className={styles.btn} onClick={() => {}}>
+      <button
+        className={styles.btn}
+        onClick={() => {
+          setIsEdit(true);
+        }}
+      >
         Change personal data
       </button>
     </div>
