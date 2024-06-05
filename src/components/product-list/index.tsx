@@ -37,7 +37,6 @@ function ProductList({ categoryId }: ProductListProps) {
             ...querySort,
             'text.en-GB': [...searchQuery],
           },
-          
         })
         .execute()
         .then((response) => {
@@ -55,7 +54,7 @@ function ProductList({ categoryId }: ProductListProps) {
     <div className={styles.catalog}>
       <div className={styles.catalogHeader}>
         <Breadcrumbs categoryId={categoryId} />
-        <Search setSearchQuery={setSearchQuery}/>
+        <Search setSearchQuery={setSearchQuery} />
         <Sorting setSort={setQuerySort} />
       </div>
       <div className={styles.wrapper}>
