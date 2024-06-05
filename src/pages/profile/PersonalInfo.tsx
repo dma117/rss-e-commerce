@@ -31,19 +31,19 @@ const PersonalInfo: FC<PersonalInfoProps> = ({
   ) : (
     <div className={styles.dataBlock}>
       <div className={styles.data}>
-        <span className={styles.label}>Email:</span>
+        <span className={styles.title}>Email:</span>
         <span className={styles.dataItem}>{email}</span>
       </div>
       <div className={styles.data}>
-        <span className={styles.label}>First Name:</span>
+        <span className={styles.title}>First Name:</span>
         <span className={styles.dataItem}>{firstName}</span>
       </div>
       <div className={styles.data}>
-        <span className={styles.label}>Last Name:</span>
+        <span className={styles.title}>Last Name:</span>
         <span className={styles.dataItem}>{lastName}</span>
       </div>
       <div className={styles.data}>
-        <span className={styles.label}>Date of birth:</span>
+        <span className={styles.title}>Date of birth:</span>
         <span className={styles.dataItem}>{dateOfBirth}</span>
       </div>
       <button

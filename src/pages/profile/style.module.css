@@ -55,7 +55,8 @@
   margin-bottom: 10px;
 }
 
-.label {
+label,
+.title {
   color: var(--dark-blue-text);
   font-weight: 600;
 }
@@ -163,11 +164,18 @@
 
 .checkboxLabel {
   padding-left: 5px;
+  font-weight: normal;
 }
 
 .buttonsBlock {
   display: flex;
   gap: 10px;
+}
+
+.error {
+  margin-top: 3px;
+  display: block;
+  color: red;
 }
 
 @media (pointer: fine) {
