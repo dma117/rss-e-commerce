@@ -37,7 +37,6 @@ function ProductList({ categoryId }: ProductListProps) {
         })
         .execute()
         .then((response) => {
-          console.log(response.body.results);
           const products = response.body.results;
           if (products) {
             setProducts(products);

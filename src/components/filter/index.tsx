@@ -49,8 +49,6 @@ function Filter({ setFilter }: FilterProps) {
       filter.push(`variants.attributes.level.key:"${level}"`);
     }
 
-    console.log(filter);
-
     setFilter(filter);
   };
 
