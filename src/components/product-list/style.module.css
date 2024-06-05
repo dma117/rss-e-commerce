@@ -1,14 +1,23 @@
 .catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin: 0 auto;
   padding: 1rem;
   max-width: var(--desktop-content-width);
 }
 
+.wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
 .productList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 350px));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 270px));
   justify-content: center;
   gap: 2rem;
+  width: 100%;
 }
 
 .productList img {
@@ -19,4 +28,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (width <=840px) {
+  .wrapper {
+    flex-direction: column;
+  }
 }

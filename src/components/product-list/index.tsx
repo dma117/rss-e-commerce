@@ -5,19 +5,22 @@ import styles from './style.module.css';
 import ProductCardMin from '@components/product-card-min';
 import Breadcrumbs from '../breadcrumbs';
 import Sorting from '../sorting';
+import Filter from '@components/filter';
 
 type ProductListProps = {
   categoryId:
-    | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
-    | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
-    | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
-    | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
+  | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
+  | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
+  | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
+  | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
 };
 
 function ProductList({ categoryId }: ProductListProps) {
   const [products, setProducts] = useState<ProductProjection[]>([]);
   const [error, setError] = useState();
-  const [query, setQuery] = useState({});
+  const [querySort, setQuerySort] = useState({});
+  const [queryFilter, setQueryFilter] = useState<string[]>([]);
+
 
   const { apiRoot } = useApiRootContext();
 
@@ -29,8 +32,11 @@ function ProductList({ categoryId }: ProductListProps) {
         .get({
           queryArgs: {
             limit: 30,
-            filter: [`categories.id:"${categoryId}"`],
-            ...query,
+            filter: [
+              `categories.id:"${categoryId}"`,
+              ...queryFilter,
+            ],
+            ...querySort,
           },
         })
         .execute()
@@ -44,47 +50,54 @@ function ProductList({ categoryId }: ProductListProps) {
         .catch((error) => {
           setError(error);
         });
-  }, [apiRoot, categoryId, query]);
+  }, [apiRoot, categoryId, querySort, queryFilter]);
 
   return (
     <div className={styles.catalog}>
       <div className={styles.catalogHeader}>
         <Breadcrumbs categoryId={categoryId} />
-        <Sorting setSort={setQuery} />
+        <Sorting setSort={setQuerySort} />
       </div>
-      <div className={styles.productList}>
-        {products &&
-          products.map((product) => {
-            const id = product.id;
-            const imgSrc =
-              product.masterVariant.assets && product.masterVariant.assets[0].sources[0].uri;
-            const title = product.name['en-GB'];
-            const level =
-              product.masterVariant.attributes && product.masterVariant.attributes[0].value.label;
-            const duration =
-              product.masterVariant.attributes && product.masterVariant.attributes[1].value;
-            const price =
-              ((product.masterVariant.prices && product.masterVariant.prices[0].value.centAmount) ||
-                0) / 100;
-            const finalPrice =
-              ((product.masterVariant.prices &&
-                product.masterVariant.prices[0].discounted?.value.centAmount) ||
-                0) / 100;
+      <div className={styles.wrapper}>
+        <aside>
+          <Filter 
+            setFilter={setQueryFilter}
+          />
+        </aside>
+        <div className={styles.productList}>
+          {products &&
+            products.map((product) => {
+              const id = product.id;
+              const imgSrc =
+                product.masterVariant.assets && product.masterVariant.assets[0].sources[0].uri;
+              const title = product.name['en-GB'];
+              const level =
+                product.masterVariant.attributes && product.masterVariant.attributes[0].value.label;
+              const duration =
+                product.masterVariant.attributes && product.masterVariant.attributes[1].value;
+              const price =
+                ((product.masterVariant.prices && product.masterVariant.prices[0].value.centAmount) ||
+                  0) / 100;
+              const finalPrice =
+                ((product.masterVariant.prices &&
+                  product.masterVariant.prices[0].discounted?.value.centAmount) ||
+                  0) / 100;
 
-            return (
-              <ProductCardMin
-                key={id}
-                id={id}
-                imgSrc={imgSrc || ''}
-                title={title}
-                price={price}
-                finalPrice={finalPrice}
-                level={level}
-                duration={duration}
-              />
-            );
-          })}
-        {error && error}
+              return (
+                <ProductCardMin
+                  key={id}
+                  id={id}
+                  imgSrc={imgSrc || ''}
+                  title={title}
+                  price={price}
+                  finalPrice={finalPrice}
+                  level={level}
+                  duration={duration}
+                />
+              );
+            })}
+          {error && error}
+        </div>
       </div>
     </div>
   );
