@@ -29,10 +29,17 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 @media (width <=840px) {
   .wrapper {
+    flex-direction: column;
+  }
+}
+
+@media (width <=560px) {
+  .catalogHeader {
     flex-direction: column;
   }
 }

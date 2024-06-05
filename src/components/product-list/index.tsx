@@ -6,6 +6,7 @@ import ProductCardMin from '@components/product-card-min';
 import Breadcrumbs from '../breadcrumbs';
 import Sorting from '../sorting';
 import Filter from '@components/filter';
+import Search from '@components/search';
 
 type ProductListProps = {
   categoryId:
@@ -20,6 +21,7 @@ function ProductList({ categoryId }: ProductListProps) {
   const [error, setError] = useState();
   const [querySort, setQuerySort] = useState({});
   const [queryFilter, setQueryFilter] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string[]>([]);
 
   const { apiRoot } = useApiRootContext();
 
@@ -33,12 +35,13 @@ function ProductList({ categoryId }: ProductListProps) {
             limit: 30,
             'filter.query': [`categories.id:"${categoryId}"`, ...queryFilter],
             ...querySort,
+            'text.en-GB': [...searchQuery],
           },
+          
         })
         .execute()
         .then((response) => {
           const products = response.body.results;
-          console.log(products);
           if (products) {
             setProducts(products);
           }
@@ -46,12 +49,13 @@ function ProductList({ categoryId }: ProductListProps) {
         .catch((error) => {
           setError(error);
         });
-  }, [apiRoot, categoryId, querySort, queryFilter]);
+  }, [apiRoot, categoryId, querySort, queryFilter, searchQuery]);
 
   return (
     <div className={styles.catalog}>
       <div className={styles.catalogHeader}>
         <Breadcrumbs categoryId={categoryId} />
+        <Search setSearchQuery={setSearchQuery}/>
         <Sorting setSort={setQuerySort} />
       </div>
       <div className={styles.wrapper}>
