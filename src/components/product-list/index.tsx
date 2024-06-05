@@ -59,9 +59,10 @@ function ProductList({ categoryId }: ProductListProps) {
             const imgSrc =
               product.masterVariant.assets && product.masterVariant.assets[0].sources[0].uri;
             const title = product.name['en-GB'];
-            // const description = product.description && product.description['en-GB'];
-            const level = product.masterVariant.attributes && product.masterVariant.attributes[0].value.label
-            const duration = product.masterVariant.attributes && product.masterVariant.attributes[1].value
+            const level =
+              product.masterVariant.attributes && product.masterVariant.attributes[0].value.label;
+            const duration =
+              product.masterVariant.attributes && product.masterVariant.attributes[1].value;
             const price =
               ((product.masterVariant.prices && product.masterVariant.prices[0].value.centAmount) ||
                 0) / 100;
