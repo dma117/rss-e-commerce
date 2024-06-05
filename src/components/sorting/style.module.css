@@ -1,0 +1,33 @@
+.sorting {
+  font-size: 1rem;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.button {
+  padding: 3px;
+  background-color: transparent;
+  font-weight: bold;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+}
+
+.buttonAsc::after {
+  content: '⮝';
+}
+
+.buttonDesc::before {
+  content: '⮟';
+}
+
+.text {
+  font-weight: bold;
+}
+
+@media (pointer: fine) {
+  .button:hover {
+    color: var(--accent-color);
+  }
+}

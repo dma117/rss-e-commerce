@@ -1,0 +1,22 @@
+.catalog {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: var(--desktop-content-width);
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 350px));
+  justify-content: center;
+  gap: 2rem;
+}
+
+.productList img {
+  width: 100%;
+}
+
+.catalogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
