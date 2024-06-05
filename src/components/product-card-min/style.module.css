@@ -38,6 +38,16 @@
   font-weight: bold;
 }
 
+.level {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accent {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
 @media (pointer: fine) {
   .productCard:hover {
     scale: 1.05;
