@@ -1,4 +1,4 @@
-// import MultiRangeSlider from '@components/range-slider';
+import MultiRangeSlider from '@components/range-slider';
 import styles from './style.module.css';
 import { FormEvent } from 'react';
 
@@ -7,47 +7,45 @@ type FilterProps = {
 };
 
 function Filter({ setFilter }: FilterProps) {
-  // type stateFormType = {
-  //   duration?: {
-  //     min: number;
-  //     max: number;
-  //   };
-  //   price?: {
-  //     min: number;
-  //     max: number;
-  //   };
-  //   level?: string;
-  // }
 
-  // const stateForm: stateFormType = {};
+  type stateFormType = {
+    duration?: {
+      min: number;
+      max: number;
+    };
+    price?: {
+      min: number;
+      max: number;
+    };
+    level?: string;
+  }
 
-  // const changeDuration = (param: { min: number, max: number }) => {
-  //   stateForm.duration = {
-  //     min: param.min,
-  //     max: param.max
-  //   }
-  // }
+  const stateForm: stateFormType = {};
 
-  // const changePrice = (param: { min: number, max: number }) => {
-  //   stateForm.price = {
-  //     min: param.min,
-  //     max: param.max
-  //   }
-  // }
+  const changeDuration = (param: { min: number, max: number }) => {
+    stateForm.duration = {
+      min: param.min,
+      max: param.max
+    }
+  }
+
+  const changePrice = (param: { min: number, max: number }) => {
+    stateForm.price = {
+      min: param.min,
+      max: param.max
+    }
+  }
 
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
     const level = Object.fromEntries(formData).level as string | undefined;
 
-    const filter = [
-      // `variants.attributes.duration:range (${stateForm.duration?.min} to ${stateForm.duration?.max})`,
-      // `variants.prices.value.centAmount:range (1 to 999)`,
-    ];
+    const filter = [];
 
-    if (level) {
-      filter.push(`variants.attributes.level.key:"${level}"`);
-    }
+    level && filter.push(`variants.attributes.level.key:"${level}"`);
+    stateForm.duration?.max && filter.push(`variants.attributes.duration:range (${stateForm.duration?.min} to ${stateForm.duration?.max})`);
+    stateForm.price?.max && filter.push(`variants.price.centAmount:range (${stateForm.price?.min * 100} to ${stateForm.price?.max * 100})`)
 
     setFilter(filter);
   };
@@ -74,7 +72,7 @@ function Filter({ setFilter }: FilterProps) {
             <input type="radio" id="hard" value="hard" name="level" />
           </label>
         </div>
-        {/* <div className={styles.duration}>
+        <div className={styles.duration}>
           <span className={styles.title}>Duration:</span>
           <MultiRangeSlider
             min={0}
@@ -89,7 +87,7 @@ function Filter({ setFilter }: FilterProps) {
             max={35}
             onChange={changePrice}
           ></MultiRangeSlider>
-        </div> */}
+        </div>
         <button className={styles.button} type="submit">
           Show
         </button>
