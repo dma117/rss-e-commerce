@@ -12,7 +12,6 @@ const MultiRangeSlider = ({
   min: number;
   max: number;
   onChange: (param: param) => void;
-
 }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
