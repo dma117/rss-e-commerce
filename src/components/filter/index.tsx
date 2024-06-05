@@ -79,11 +79,11 @@ function Filter({ setFilter }: FilterProps) {
         </div>
         <div className={styles.duration}>
           <span className={styles.title}>Duration:</span>
-          <MultiRangeSlider min={0} max={18} onChange={changeDuration}></MultiRangeSlider>
+          <MultiRangeSlider min={0} max={20} onChange={changeDuration}></MultiRangeSlider>
         </div>
         <div className={styles.price}>
           <span className={styles.title}>Price:</span>
-          <MultiRangeSlider min={0} max={35} onChange={changePrice}></MultiRangeSlider>
+          <MultiRangeSlider min={0} max={40} onChange={changePrice}></MultiRangeSlider>
         </div>
         <button className={styles.button} type="submit">
           Show
