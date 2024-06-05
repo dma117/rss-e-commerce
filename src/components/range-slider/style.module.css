@@ -52,7 +52,7 @@
 /* Removing the default appearance */
 .thumb,
 .thumb::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  appearance: none;
   -webkit-tap-highlight-color: transparent;
 }
 

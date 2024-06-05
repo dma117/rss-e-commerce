@@ -9,10 +9,10 @@ import Filter from '@components/filter';
 
 type ProductListProps = {
   categoryId:
-  | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
-  | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
-  | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
-  | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
+    | 'c96ff3d0-1688-4913-90ae-a3056e259e68'
+    | '78db1a69-6023-44b5-8b3d-a8f294cdd335'
+    | 'dac8edad-bf16-4f56-859c-f364efde1c2a'
+    | '9f44fc3d-b2b9-4625-91e8-03934154b07d';
 };
 
 function ProductList({ categoryId }: ProductListProps) {
@@ -20,7 +20,6 @@ function ProductList({ categoryId }: ProductListProps) {
   const [error, setError] = useState();
   const [querySort, setQuerySort] = useState({});
   const [queryFilter, setQueryFilter] = useState<string[]>([]);
-
 
   const { apiRoot } = useApiRootContext();
 
@@ -32,10 +31,7 @@ function ProductList({ categoryId }: ProductListProps) {
         .get({
           queryArgs: {
             limit: 30,
-            filter: [
-              `categories.id:"${categoryId}"`,
-              ...queryFilter,
-            ],
+            filter: [`categories.id:"${categoryId}"`, ...queryFilter],
             ...querySort,
           },
         })
@@ -60,9 +56,7 @@ function ProductList({ categoryId }: ProductListProps) {
       </div>
       <div className={styles.wrapper}>
         <aside>
-          <Filter 
-            setFilter={setQueryFilter}
-          />
+          <Filter setFilter={setQueryFilter} />
         </aside>
         <div className={styles.productList}>
           {products &&
@@ -76,7 +70,8 @@ function ProductList({ categoryId }: ProductListProps) {
               const duration =
                 product.masterVariant.attributes && product.masterVariant.attributes[1].value;
               const price =
-                ((product.masterVariant.prices && product.masterVariant.prices[0].value.centAmount) ||
+                ((product.masterVariant.prices &&
+                  product.masterVariant.prices[0].value.centAmount) ||
                   0) / 100;
               const finalPrice =
                 ((product.masterVariant.prices &&

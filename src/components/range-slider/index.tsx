@@ -1,10 +1,18 @@
-import { useCallback, useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
-import styles from "./style.module.css";
-import cn from "classnames";
+import { useCallback, useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+import styles from './style.module.css';
+import cn from 'classnames';
 
-type param = { min: number, max: number };
-const MultiRangeSlider = ({ min, max, onChange }: { min: number, max: number, onChange: (param: param) => void }) => {
+type param = { min: number; max: number };
+const MultiRangeSlider = ({
+  min,
+  max,
+  onChange,
+}: {
+  min: number;
+  max: number;
+  onChange: (param: param) => void;
+}) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -14,7 +22,7 @@ const MultiRangeSlider = ({ min, max, onChange }: { min: number, max: number, on
   // Convert to percentage
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
+    [min, max],
   );
 
   // Set width of the range to decrease from the left side
@@ -68,7 +76,6 @@ const MultiRangeSlider = ({ min, max, onChange }: { min: number, max: number, on
           maxValRef.current = value;
         }}
         className={cn(styles.thumb, styles['thumb--right'])}
-
       />
 
       <div className={styles.slider}>
@@ -84,7 +91,7 @@ const MultiRangeSlider = ({ min, max, onChange }: { min: number, max: number, on
 MultiRangeSlider.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default MultiRangeSlider;

@@ -4,10 +4,9 @@ import { FormEvent } from 'react';
 
 type FilterProps = {
   setFilter: (param: string[] | []) => void;
-}
+};
 
 function Filter({ setFilter }: FilterProps) {
-
   // type stateFormType = {
   //   duration?: {
   //     min: number;
@@ -44,35 +43,36 @@ function Filter({ setFilter }: FilterProps) {
     const filter = [
       // `variants.attributes.duration:range (${stateForm.duration?.min} to ${stateForm.duration?.max})`,
       // `variants.prices.value.centAmount:range (1 to 999)`,
-    ]
+    ];
 
     if (level) {
-      filter.push(
-        `variants.attributes.level.key:"${level}"`
-      )
+      filter.push(`variants.attributes.level.key:"${level}"`);
     }
 
     console.log(filter);
 
     setFilter(filter);
-  }
+  };
 
   const resetHandler = () => {
     setFilter([]);
-  }
+  };
 
   return (
     <div className={styles.wrapper}>
       <form className={styles.filter} onSubmit={submitHandler}>
         <div className={styles.level}>
           <span className={styles.title}>Level:</span>
-          <label htmlFor="easy" >Easy
+          <label htmlFor="easy">
+            Easy
             <input type="radio" id="easy" value="easy" name="level" />
           </label>
-          <label htmlFor="medium">Medium
+          <label htmlFor="medium">
+            Medium
             <input type="radio" id="medium" value="medium" name="level" />
           </label>
-          <label htmlFor="hard">Hard
+          <label htmlFor="hard">
+            Hard
             <input type="radio" id="hard" value="hard" name="level" />
           </label>
         </div>
@@ -92,10 +92,14 @@ function Filter({ setFilter }: FilterProps) {
             onChange={changePrice}
           ></MultiRangeSlider>
         </div> */}
-        <button className={styles.button} type='submit'>Show</button>
-        <button className={styles.button} type='reset' onClick={resetHandler}>Reset</button>
-      </form >
-    </div >
+        <button className={styles.button} type="submit">
+          Show
+        </button>
+        <button className={styles.button} type="reset" onClick={resetHandler}>
+          Reset
+        </button>
+      </form>
+    </div>
   );
 }
 

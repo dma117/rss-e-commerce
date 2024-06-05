@@ -28,10 +28,10 @@
   gap: 10px;
 }
 
-@media(pointer: fine) {
+@media (pointer: fine) {
   .level label:hover {
     cursor: pointer;
-    color: var(--accent-color)
+    color: var(--accent-color);
   }
 
   .button:hover {
@@ -62,7 +62,6 @@
 
   .filter {
     width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
   }
 }
