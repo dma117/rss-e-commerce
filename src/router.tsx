@@ -12,6 +12,7 @@ import AuthorizationLayout from '@pages/authorization';
 import ProtectedRoute from './components/protectedRoute';
 import PublicRoute from './components/publicRoute';
 import { Routes } from './utils/const';
+import ProductDetail from './pages/product-detail';
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,16 @@ export const router = createBrowserRouter([
       {
         path: Routes.PROFILE,
         element: <Profile />,
+      },
+    ],
+  },
+  {
+    path: Routes.COURSES,
+    element: <Layout />,
+    children: [
+      {
+        path: Routes.PRODUCT_DETAIL,
+        element: <ProductDetail />,
       },
     ],
   },
