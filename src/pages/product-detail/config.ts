@@ -1,7 +1,6 @@
 import { isNumber, isObject, isString } from '@/utils/type-guards';
 import { Asset, Attribute, Price, Product } from '@commercetools/platform-sdk';
 import { GalleryProps } from 'react-photoswipe-gallery';
-import { Settings } from 'react-slick';
 
 const LANGUAGE_KEY = 'en-GB';
 const PRICE_COEF = 100;
@@ -101,16 +100,6 @@ export const mapProductProjectionToProduct = (fetchedProduct: Product): ProductD
 
 export const galleryProps: GalleryProps = {
   options: {
-    counter: false,
+    padding: { top: 20, bottom: 40, left: 100, right: 100 },
   },
-};
-
-export const sliderSettings: Settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  swipe: false, // Disable swiping
-  draggable: false, // Disable dragging
 };
