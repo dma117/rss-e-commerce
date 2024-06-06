@@ -62,7 +62,7 @@ const AddressItem: FC<AddressItemProps> = ({
         billingStreet: address.streetName,
         billingPostalCode: address.postalCode,
       };
-      changeValues(newValues, values.billingCountry);
+      changeValues(newValues, address.country);
     }
     setLocalIsDefaultShipping(isDefaultShipping);
     setLocalIsDefaultBilling(isDefaultBilling);
