@@ -63,5 +63,11 @@
   .filter {
     width: 100%;
     flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+
+  .button {
+    align-self: center;
+    width: 60%;
   }
 }

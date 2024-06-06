@@ -7,7 +7,6 @@ type FilterProps = {
 };
 
 function Filter({ setFilter }: FilterProps) {
-
   type stateFormType = {
     duration?: {
       min: number;
@@ -18,23 +17,23 @@ function Filter({ setFilter }: FilterProps) {
       max: number;
     };
     level?: string;
-  }
+  };
 
   const stateForm: stateFormType = {};
 
-  const changeDuration = (param: { min: number, max: number }) => {
+  const changeDuration = (param: { min: number; max: number }) => {
     stateForm.duration = {
       min: param.min,
-      max: param.max
-    }
-  }
+      max: param.max,
+    };
+  };
 
-  const changePrice = (param: { min: number, max: number }) => {
+  const changePrice = (param: { min: number; max: number }) => {
     stateForm.price = {
       min: param.min,
-      max: param.max
-    }
-  }
+      max: param.max,
+    };
+  };
 
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -44,8 +43,14 @@ function Filter({ setFilter }: FilterProps) {
     const filter = [];
 
     level && filter.push(`variants.attributes.level.key:"${level}"`);
-    stateForm.duration?.max && filter.push(`variants.attributes.duration:range (${stateForm.duration?.min} to ${stateForm.duration?.max})`);
-    stateForm.price?.max && filter.push(`variants.price.centAmount:range (${stateForm.price?.min * 100} to ${stateForm.price?.max * 100})`)
+    stateForm.duration?.max &&
+      filter.push(
+        `variants.attributes.duration:range (${stateForm.duration?.min} to ${stateForm.duration?.max})`,
+      );
+    stateForm.price?.max &&
+      filter.push(
+        `variants.price.centAmount:range (${stateForm.price?.min * 100} to ${stateForm.price?.max * 100})`,
+      );
 
     setFilter(filter);
   };
@@ -74,19 +79,11 @@ function Filter({ setFilter }: FilterProps) {
         </div>
         <div className={styles.duration}>
           <span className={styles.title}>Duration:</span>
-          <MultiRangeSlider
-            min={0}
-            max={18}
-            onChange={changeDuration}
-          ></MultiRangeSlider>
+          <MultiRangeSlider min={0} max={20} onChange={changeDuration}></MultiRangeSlider>
         </div>
         <div className={styles.price}>
           <span className={styles.title}>Price:</span>
-          <MultiRangeSlider
-            min={0}
-            max={35}
-            onChange={changePrice}
-          ></MultiRangeSlider>
+          <MultiRangeSlider min={0} max={40} onChange={changePrice}></MultiRangeSlider>
         </div>
         <button className={styles.button} type="submit">
           Show

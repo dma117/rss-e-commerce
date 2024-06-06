@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.input {
+  border-radius: 5px;
+  border: 1px solid var(--dark-bg);
+}
+
+.button {
+  padding: 0.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  background-color: transparent;
+  border: 1px solid var(--dark-bg);
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+@media (pointer: fine) {
+  .button:hover {
+    color: var(--light-text);
+    background-color: var(--accent-color);
+  }
+}
