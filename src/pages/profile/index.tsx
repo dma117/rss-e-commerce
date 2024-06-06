@@ -34,6 +34,7 @@ const Profile: FC = () => {
             addresses={userInfo?.addresses ? userInfo?.addresses : []}
             defaultShippingAddress={userInfo?.defaultShippingAddressId}
             defaultBillingAddress={userInfo?.defaultBillingAddressId}
+            setUserInfo={setUserInfo}
           />
         );
       case 'changePassword':
