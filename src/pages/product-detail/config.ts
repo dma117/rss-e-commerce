@@ -1,18 +1,24 @@
 import { isNumber, isObject, isString } from '@/utils/type-guards';
 import { Asset, Attribute, Price, Product } from '@commercetools/platform-sdk';
+import { GalleryProps } from 'react-photoswipe-gallery';
+import { Settings } from 'react-slick';
 
 const LANGUAGE_KEY = 'en-GB';
 const PRICE_COEF = 100;
 
+type AssetData = {
+  id: string;
+  url: string;
+};
 export interface ProductData {
   id: string;
   name: string;
   description: string;
   price: number;
-  finalPrice: number;
+  finalPrice?: number;
   level: string;
   duration: number;
-  assets: string[];
+  assets: AssetData[];
 }
 
 const containsPrice = (prices: Price[]): boolean =>
@@ -48,11 +54,11 @@ const getPrice = (prices: Price[] | undefined): number => {
   return 0;
 };
 
-const getDiscount = (prices: Price[] | undefined): number => {
+const getDiscount = (prices: Price[] | undefined): number | undefined => {
   if (isObject(prices) && containsDiscount(prices)) {
     return prices[0].discounted!.value.centAmount / PRICE_COEF;
   }
-  return 0;
+  return undefined;
 };
 
 const getLevel = (attributes: Attribute[] | undefined): string => {
@@ -69,9 +75,9 @@ const getDuration = (attributes: Attribute[] | undefined): number => {
   return 0;
 };
 
-const getAssets = (assets: Asset[] | undefined): string[] => {
+const getAssets = (assets: Asset[] | undefined): AssetData[] => {
   if (isObject(assets)) {
-    return assets.map((value) => value.sources[0].uri);
+    return assets.map((value) => ({ id: value.id, url: value.sources[0].uri }));
   }
   return [];
 };
@@ -91,4 +97,20 @@ export const mapProductProjectionToProduct = (fetchedProduct: Product): ProductD
     duration: getDuration(currentMasterVariant.attributes),
     assets: getAssets(currentMasterVariant.assets),
   };
+};
+
+export const galleryProps: GalleryProps = {
+  options: {
+    counter: false,
+  },
+};
+
+export const sliderSettings: Settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  swipe: false, // Disable swiping
+  draggable: false, // Disable dragging
 };
