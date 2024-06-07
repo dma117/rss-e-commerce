@@ -1,7 +1,5 @@
-// import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './style.module.css';
-// import cn from 'classnames';
 
 type SortingProps = {
   setSort: (query: { [key: string]: string }) => void;
