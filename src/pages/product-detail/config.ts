@@ -82,7 +82,6 @@ const getAssets = (assets: Asset[] | undefined): AssetData[] => {
 };
 
 export const mapProductProjectionToProduct = (fetchedProduct: Product): ProductData | null => {
-  console.log(fetchedProduct);
   const currentMasterData = fetchedProduct.masterData.current;
   const currentMasterVariant = currentMasterData.masterVariant;
 
