@@ -16,7 +16,7 @@ const ChangePassword: FC = () => {
     newPassword: '',
   };
 
-  const { values, errors, handleChange, changeValues } = useFormValidation(
+  const { values, errors, handleChange, changeValues, isFormValid, setErrors } = useFormValidation(
     initialState,
     getValidationRules(Object.keys(initialState)),
   );
@@ -26,8 +26,11 @@ const ChangePassword: FC = () => {
       const response = await changePassword(apiRoot, values.password, values.newPassword);
       if (response.success && response.apiRoot) {
         notify('Successful changing password!');
-        changeValues({ password: '', newPassword: '' });
+
+        changeValues({ [inputNames.password]: '', [inputNames.newPassword]: '' });
+        setErrors({ [inputNames.password]: undefined, [inputNames.newPassword]: undefined });
         setApiRoot(response.apiRoot);
+        console.log(errors, errors[inputNames.newPassword]);
       } else if (response.errorMessage) {
         notify(response.errorMessage);
       }
@@ -58,7 +61,7 @@ const ChangePassword: FC = () => {
           <span className={styles.error}>{errors[inputNames.newPassword]}</span>
         )}
       </div>
-      <button className={styles.btn} onClick={changeUserPassword}>
+      <button disabled={!isFormValid()} className={styles.btn} onClick={changeUserPassword}>
         Change Password
       </button>
     </>
