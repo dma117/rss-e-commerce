@@ -112,7 +112,6 @@ const AddressItem: FC<AddressItemProps> = ({
 
   async function save(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(isEdit);
     if (!apiRoot || !isEdit) return;
 
     const addressObject: BaseAddress = {
