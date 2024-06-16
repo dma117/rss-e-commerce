@@ -6,6 +6,7 @@
 }
 
 .input {
+  padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--dark-bg);
 }
@@ -13,7 +14,6 @@
 .button {
   padding: 0.5rem;
   font-weight: bold;
-  color: var(--accent-color);
   background-color: transparent;
   border: 1px solid var(--dark-bg);
   border-radius: 5px;
@@ -22,7 +22,6 @@
 
 @media (pointer: fine) {
   .button:hover {
-    color: var(--light-text);
-    background-color: var(--accent-color);
+      color: var(--accent-color);
   }
 }

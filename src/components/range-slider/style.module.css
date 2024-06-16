@@ -30,14 +30,13 @@
 }
 
 .slider__range {
-  background-color: var(--accent-color);
+  background: var(--dark-gray-text);
   z-index: 2;
 }
 
 .slider__leftValue,
 .slider__rightValue {
-  color: var(--accent-color);
-  font-size: 12px;
+  font-size: 1rem;
   margin-top: 20px;
 }
 
@@ -49,7 +48,6 @@
   right: 6px;
 }
 
-/* Removing the default appearance */
 .thumb,
 .thumb::-webkit-slider-thumb {
   appearance: none;
@@ -72,7 +70,6 @@
   z-index: 4;
 }
 
-/* For Chrome browsers */
 .thumb::-webkit-slider-thumb {
   background-color: #f1f5f7;
   border: none;
@@ -86,7 +83,6 @@
   position: relative;
 }
 
-/* For Firefox browsers */
 .thumb::-moz-range-thumb {
   background-color: #f1f5f7;
   border: none;

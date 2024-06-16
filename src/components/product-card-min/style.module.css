@@ -2,8 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 5px;
   box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
   transition: all 0.5s;
 }
@@ -12,9 +10,17 @@
   width: 100%;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
 .title {
   font-size: 1.3rem;
-  font-weight: bold;
+  flex-grow: 1;
 }
 
 .price {
@@ -44,8 +50,22 @@
 }
 
 .accent {
-  font-weight: bold;
-  color: var(--accent-color);
+  color: #d9534f;
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (pointer: fine) {

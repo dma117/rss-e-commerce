@@ -81,7 +81,6 @@ function ProductList({ categoryId }: ProductListProps) {
                 ((product.masterVariant.prices &&
                   product.masterVariant.prices[0].discounted?.value.centAmount) ||
                   0) / 100;
-
               return (
                 <ProductCardMin
                   key={id}

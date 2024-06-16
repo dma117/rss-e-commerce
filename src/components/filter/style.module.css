@@ -35,22 +35,19 @@
   }
 
   .button:hover {
-    color: var(--light-text);
-    background-color: var(--dark-bg);
+    color: var(--accent-color);
   }
 }
 
 .title {
-  color: var(--accent-color);
   font-weight: bold;
 }
 
 .button {
   padding: 5px;
   font-weight: bold;
-  color: var(--dark-bg);
   background: transparent;
-  border: 1px solid var(--dark-bg);
+  border-width: 1px;
   border-radius: 7px;
   transition: all 0.5s;
 }

@@ -8,13 +8,13 @@ type SortingProps = {
 function Sorting({ setSort }: SortingProps) {
   return (
     <div className={styles.sorting}>
+      <span className={styles.text}>Price:</span>
       <button
         className={cn(styles.button, styles.buttonAsc)}
         onClick={() => setSort({ sort: 'price asc' })}
       >
         Asc
       </button>
-      <span className={styles.text}>Price</span>
       <button
         className={cn(styles.button, styles.buttonDesc)}
         onClick={() => setSort({ sort: 'price desc' })}

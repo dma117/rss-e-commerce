@@ -6,5 +6,11 @@
 }
 
 .link {
-  color: var(--accent-color);
+  transition: all 0.5s;
+}
+
+@media (pointer: fine) {
+  .link:hover {
+    color: var(--accent-color);
+  }
 }
