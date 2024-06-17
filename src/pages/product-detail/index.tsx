@@ -25,10 +25,8 @@ const ProductDetail: FC = () => {
         .get()
         .execute()
         .then((response) => {
-          console.log('Product retrieved:', response.body);
           const productProjection = response.body;
           const product = mapProductProjectionToProduct(productProjection);
-          console.log('Mapped product:', product);
           setProduct(product);
           setSelectedImage(product!.assets[0].url);
         })
