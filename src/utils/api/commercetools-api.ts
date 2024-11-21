@@ -11,6 +11,7 @@ import {
   createApiBuilderFromCtpClient,
   MyCustomerDraft,
 } from '@commercetools/platform-sdk';
+
 import { localStorageAnonymousId, localStorageCartsId, localStorageTokenKey } from '../const';
 
 function createApiRoot(session: Client): ByProjectKeyRequestBuilder {
